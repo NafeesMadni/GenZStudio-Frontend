@@ -1,0 +1,70 @@
+app/
+├── (Generators)/
+│   ├── youtube/
+│   │   ├── description-generator/
+│   │   │   └── page.tsx
+│   │   ├── title-generator/
+│   │   │   └── page.tsx
+│   │   ├── username-generator/
+│   │   │   └── page.tsx
+│   │   ├── hashtag-generator/
+│   │   │   └── page.tsx
+│   │   └── transcript-generator/
+│   │       └── page.tsx
+│   ├── conten-creation/
+│   │   ├── ai-video-idea-generator/
+│   │   │   └── page.tsx
+│   │   ├── ai-video-hook-generator/
+│   │   │   └── page.tsx
+│   │   ├── ai-video-script-generator/
+│   │   │   └── page.tsx
+│   │   ├── ai-movie-review-generator/
+│   │   │   └── page.tsx
+│   │   ├── ai-series-review-generator/
+│   │   │   └── page.tsx
+│   │   └── ai-image-generator/
+│   │       └── page.tsx
+│   ├── instagram/
+│   │   ├── username-generator/
+│   │   │   └── page.tsx
+│   │   └── caption-generator/
+│   │       └── page.tsx
+│   └── tiktok/
+│       ├── hashtag-generator/
+│       │   └── page.tsx
+│       ├── caption-generator/
+│       │   └── page.tsx
+│       └── transcript-generator/
+│           └── page.tsx
+├── (Downloaders)/
+│   ├── youtube-video-downloader/
+│   │   └── page.tsx
+│   ├── instagram-video-downloader/
+│   │   └── page.tsx
+│   ├── tiktok-video-downloader/
+│   │   └── page.tsx
+│   ├── linkedin-video-downloader/
+│   │   └── page.tsx
+│   ├── reddit-video-downloader/
+│   │   └── page.tsx
+│   ├── facebook-video-downloader/
+│   │   └── page.tsx
+│   ├── x-video-downloader/
+│   │   └── page.tsx
+│   ├── pinterest-video-downloader/
+│   │   └── page.tsx
+│   └── (spotify)/
+│       ├── spotify-track-downloader/
+│       │   └── page.tsx
+│       ├── spotify-playlist-downloader/
+│       │   └── page.tsx
+│       └── spotify-album-downloader/
+│           └── page.tsx
+└── (Features)/
+    └── features/
+        ├── splitter-ai/
+        │   └── page.tsx
+        ├── transcript-ai/
+        │   └── page.tsx
+        └── image-ai/
+            └── page.tsx
