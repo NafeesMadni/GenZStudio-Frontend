@@ -265,7 +265,7 @@ export default function PinterestVideoDownloader() {
                 </svg>
                 <p className="font-bold text-red-400">Error</p>
               </div>
-              <p className="text-red-200 mt-2">{error}</p>
+              <p className="text-red-300 mt-2" dangerouslySetInnerHTML={{ __html: error }}></p>
             </div>
           </div>
         )}

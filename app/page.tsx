@@ -206,7 +206,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <Link
-                href="/tiktok/video-downloader"
+                href="/tiktok-video-downloader"
                 className="tool-card group bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-5 transition-all duration-300"
               >
                 <div className="flex items-center gap-3 mb-3">
@@ -814,10 +814,10 @@ export default function Home() {
                 AI Content Creation
               </h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {/* Video Script Writer */}
               <Link
-                href="/ai/video-script"
+                href="/content-creation/ai-video-script-generator"
                 className="tool-card ai-card bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-5 transition-all duration-300 hover:bg-gray-800/70 hover:border-blue-500/30 hover:shadow-blue-500/20"
               >
                 <div className="flex items-center gap-3 mb-3">
@@ -897,7 +897,7 @@ export default function Home() {
               </Link>
 
               {/* Vlogger Script Writer */}
-              <Link
+              {/* <Link
                 href="/content-creation/vlogger-script-generator"
                 className="tool-card ai-card bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-5 transition-all duration-300 hover:bg-gray-800/70 hover:border-blue-500/30 hover:shadow-blue-500/20"
               >
@@ -923,7 +923,7 @@ export default function Home() {
                 <p className="text-gray-400 text-sm">
                   Automated AI-powered vlogs script creation.
                 </p>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

@@ -274,7 +274,7 @@ export default function YouTubeDescriptionGenerator() {
               </svg>
               <span className="font-semibold">Error</span>
             </div>
-            <p className="text-red-300">{error}</p>
+            <p className="text-red-300" dangerouslySetInnerHTML={{ __html: error }}></p>
           </div>
         )}
       </div>

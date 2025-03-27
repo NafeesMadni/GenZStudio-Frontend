@@ -43,7 +43,7 @@ export default function AIImageGenerator() {
       setGeneratedImages(data.images);
       showToast("Images generated successfully!");
     } catch (error) {
-      showToast(error instanceof Error ? error.message : "Failed to generate images", "error");
+      showToast(error instanceof Error ? "Our API is currently under development and not live yet." : "Failed to generate images", "error");
     } finally {
       setIsLoading(false);
     }

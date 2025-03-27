@@ -248,7 +248,7 @@ export default function AISeriesReviewGenerator() {
               </svg>
               <span className="font-semibold text-red-400">Error</span>
             </div>
-            <p className="text-red-300 mt-2">{error}</p>
+            <p className="text-red-300 mt-2" dangerouslySetInnerHTML={{ __html: error }}></p>
           </div>
         )}
       </div>
