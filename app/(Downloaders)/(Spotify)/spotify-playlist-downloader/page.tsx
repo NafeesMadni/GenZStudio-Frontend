@@ -50,6 +50,7 @@ export default function SpotifyPlaylistDownloader() {
         setShowResult(true)
       }
     } catch (error) {
+      console.log(error)
       setError('Failed to fetch playlist information')
     } finally {
       setLoading(false)

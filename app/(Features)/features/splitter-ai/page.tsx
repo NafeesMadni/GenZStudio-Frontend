@@ -94,6 +94,7 @@ export default function SplitterAI() {
         setAudioFiles(data.data.audio_files);
       }
     } catch (error) {
+      console.error(error)
       setError(`An error occurred while processing the file: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
       // Stop animations and reset states

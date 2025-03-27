@@ -41,6 +41,7 @@ export default function SpotifyTrackDownloader() {
         setShowResult(true)
       }
     } catch (error) {
+      console.error(error)
       setError('Failed to fetch track information')
     } finally {
       setLoading(false)

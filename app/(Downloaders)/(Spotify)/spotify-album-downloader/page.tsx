@@ -51,6 +51,7 @@ export default function SpotifyAlbumDownloader() {
         setShowResult(true)
       }
     } catch (error) {
+      console.error(error)
       setError('Failed to fetch album information')
     } finally {
       setLoading(false)

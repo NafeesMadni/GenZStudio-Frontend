@@ -37,6 +37,7 @@ export default function FacebookVideoDownloader() {
         setVideoData(data.data)
       }
     } catch (error) {
+      console.error(error)
       setError('Failed to fetch video information')
     } finally {
       setIsLoading(false)

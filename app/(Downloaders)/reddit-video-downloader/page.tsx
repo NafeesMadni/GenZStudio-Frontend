@@ -42,6 +42,7 @@ export default function RedditVideoDownloader() {
         setShowResult(true)
       }
     } catch (error) {
+      console.error(error)
       setError('Failed to fetch video information')
     } finally {
       setLoading(false)
