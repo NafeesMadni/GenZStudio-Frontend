@@ -149,7 +149,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 blur-3xl"></div>
         <div className="relative text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            Welcome to Toolify
+            Welcome to GenZStudio
           </h1>
           <p className="text-slate-300 mt-4 max-w-2xl mx-auto text-base sm:text-lg">
             Your all-in-one platform for AI-powered content creation and social media
@@ -1030,7 +1030,7 @@ export default function Home() {
             Ready to supercharge your content?
           </h2>
           <p className="text-slate-400 mb-8">
-            Join thousands of content creators who trust Toolify for their daily
+            Join thousands of content creators who trust GenZStudio for their daily
             content needs.
           </p>
           <Link

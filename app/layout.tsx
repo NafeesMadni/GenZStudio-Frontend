@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Toolify - AI Tools for Content Creators",
-  description: "Toolify is the best AI tool to create captivating short-form videos in seconds for teams and businesses.",
+  title: "GenZStudio - AI Tools for Content Creators",
+  description: "GenZStudio is the best AI tool to create captivating short-form videos in seconds for teams and businesses.",
 };
 
 export default function RootLayout({
@@ -194,7 +194,7 @@ function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/">
-            <div className="text-2xl font-bold text-cyan-400">Toolify</div>
+            <div className="text-2xl font-bold text-cyan-400">GenZStudio</div>
           </Link>
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
@@ -1081,11 +1081,11 @@ function Footer() {
               <span
                 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
               >
-                Toolify
+                GenZStudio
               </span>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-gray-400">
-              Toolify is the best AI tool to create captivating short-form
+              GenZStudio is the best AI tool to create captivating short-form
               videos in seconds for teams and businesses.
             </p>
 
@@ -1385,11 +1385,11 @@ function Footer() {
             <p className="text-sm text-gray-400">
               Made with
               <span className="mx-1 text-red-500">❤</span>
-              in PK - ©Copyright 2025
+              in PK - © 2025 
               <span
-                className="text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors duration-200"
+                className="text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors duration-200 pl-1"
               >
-                Toolify
+                GenZStudio
               </span>
             </p>
           </div>
