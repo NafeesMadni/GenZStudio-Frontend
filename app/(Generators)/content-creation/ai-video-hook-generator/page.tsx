@@ -274,7 +274,7 @@ export default function AIVideoHookGenerator() {
                 Generated Hooks
               </p>
             </div>
-            <div className="text-gray-300 leading-relaxed space-y-2">
+            <div className="text-white leading-relaxed space-y-2">
               <ol className="list-decimal pl-5">
                 {generatedHooks.map((hook, index) => (
                   <li key={index}>{hook}</li>
