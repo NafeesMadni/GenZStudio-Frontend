@@ -1,3 +1,6 @@
+export default function Page() {
+    return <div>AI Movie Review Generator Page</div>;
+}
 // 'use client';
 
 // import { useState } from 'react';

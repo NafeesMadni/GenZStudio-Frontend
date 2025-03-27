@@ -1,3 +1,6 @@
+export default function Page() {
+    return <div>AI Series Review Generator Page</div>;
+}
 // 'use client';
 
 // import { useState, useEffect } from 'react';

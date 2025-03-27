@@ -145,18 +145,18 @@ export default function TranscriptAI() {
 
   const handleDownload = (fileType: 'json_file' | 'txt_file' | 'srt_file' | 'vtt_file') => {
     if (fileData && fileData[fileType]) {
-      const data = fileData[fileType]
-      const format = fileType.split('_')[0]
-      const decodedData = Uint8Array.from(atob(data[`${format}_base64`]), c => c.charCodeAt(0))
-      const blob = new Blob([decodedData], { type: 'application/octet-stream' })
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = data.name
-      document.body.appendChild(a)
-      a.click()
-      URL.revokeObjectURL(url)
-      document.body.removeChild(a)
+      const data = fileData[fileType] as { name: string, [key: string]: string };
+      const format = fileType.split('_')[0];
+      const base64Key = `${format}_base64` as keyof typeof data;
+      const decodedData = Uint8Array.from(atob(data[base64Key]), c => c.charCodeAt(0));
+      const blob = new Blob([decodedData], { type: 'application/octet-stream' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.download = data.name;
+      document.body.appendChild(a);
+      a.click();
+      URL.revokeObjectURL(url);
+      document.body.removeChild(a);
     }
   }
 
@@ -327,7 +327,7 @@ export default function TranscriptAI() {
                 <option value="zu" data-flag="🇿🇦">🇿🇦 Zulu</option>
             </select>
           </div>
-          <p className="text-xs text-gray-500 mt-3">Supports MP4, MP3 ... • 50 MB</p>
+          <p className="text-xs text-gray-500 mt-3">Supports MP4, MP3 • 50 MB</p>
         </div>
 
         {/* Upload progress container */}

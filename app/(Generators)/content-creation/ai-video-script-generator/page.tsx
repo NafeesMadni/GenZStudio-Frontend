@@ -1,3 +1,6 @@
+export default function Page() {
+    return <div>AI Video Script Generator Page</div>;
+}
 // 'use client';
 
 // import { API_BASE_URL } from '@/app/utils/config';
