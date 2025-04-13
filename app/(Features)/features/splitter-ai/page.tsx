@@ -6,8 +6,8 @@ import { API_BASE_URL } from '@/app/utils/config';
 import { useState, useRef, useEffect } from 'react';
 import WaveSurfer from 'wavesurfer.js';
 
-// Add this after your existing imports
-function useClickOutside(ref: React.RefObject<HTMLElement>, handler: () => void) {
+// Update the hook type definition
+function useClickOutside(ref: React.RefObject<HTMLDivElement>, handler: () => void) {
   useEffect(() => {
     const listener = (event: MouseEvent | TouchEvent) => {
       if (!ref.current || ref.current.contains(event?.target as Node)) {
@@ -64,6 +64,8 @@ export default function SplitterAI() {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
   const [downloadProgress, setDownloadProgress] = useState<DownloadProgress>({});
+  const [isReady, setIsReady] = useState<boolean>(false);
+  const [readyCount, setReadyCount] = useState<number>(0);
   const waveformRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   // Refs
@@ -229,6 +231,9 @@ export default function SplitterAI() {
   useEffect(() => {
     if (audioFiles.length > 0) {
       const newWaveSurfers: { [key: string]: WaveSurfer } = {};
+      setReadyCount(0); // Reset ready count when initializing
+      setIsReady(false); // Reset ready state
+      setIsPlaying(false); // Ensure play state is reset
 
       audioFiles.forEach((file, index) => {
         if (waveformRefs.current[file.source_name]) {
@@ -238,7 +243,6 @@ export default function SplitterAI() {
             progressColor: toolColor[index].fr,
             height: 64,
             normalize: true,
-            // backgroundColor: toolColor[index].bg,
             barWidth: 2,
             barHeight: 0.1,
             barGap: 1,
@@ -248,6 +252,17 @@ export default function SplitterAI() {
 
           wavesurfer.load(file.download_url);
           newWaveSurfers[file.source_name] = wavesurfer;
+
+          // Add ready handler for all tracks
+          wavesurfer.on('ready', () => {
+            setReadyCount(prev => {
+              const newCount = prev + 1;
+              if (newCount === audioFiles.length) {
+                setIsReady(true);
+              }
+              return newCount;
+            });
+          });
 
           // Add time update handler for the first track only
           if (file.source_name === audioFiles[0].source_name) {
@@ -268,11 +283,12 @@ export default function SplitterAI() {
             setIsPlaying(false);
           });
 
-          // Keep tracks in sync
-          wavesurfer.on('seek', (progress) => {
+          // Replace the seeking event handler
+          wavesurfer.on('interaction', () => {
+            const currentProgress = wavesurfer.getCurrentTime() / wavesurfer.getDuration();
             Object.entries(newWaveSurfers).forEach(([name, ws]) => {
               if (name !== file.source_name) {
-                ws.seekTo(progress);
+                ws.seekTo(currentProgress);
               }
             });
           });
@@ -289,6 +305,8 @@ export default function SplitterAI() {
 
   // Handle global playback
   const togglePlayback = () => {
+    if (!isReady) return; // Prevent playback if not ready
+    
     const newIsPlaying = !isPlaying;
     setIsPlaying(newIsPlaying);
     
@@ -303,23 +321,27 @@ export default function SplitterAI() {
 
   // Handle waveform click
   const handleWaveformClick = (e: React.MouseEvent<HTMLDivElement>, sourceName: string) => {
+    if (!waveSurfers[sourceName]) return;
+    
     const rect = e.currentTarget.getBoundingClientRect();
     const relativeX = e.clientX - rect.left;
     const progress = relativeX / rect.width;
     
-    const wasPlaying = isPlaying;
-    if (wasPlaying) {
-      // Pause all before seeking
-      Object.values(waveSurfers).forEach(ws => ws.pause());
-    }
+    // Pause all wavesurfers
+    Object.values(waveSurfers).forEach(ws => ws.pause());
     
-    // Seek all to the same position
-    Object.values(waveSurfers).forEach(ws => {
-      ws.seekTo(progress);
+    // Seek the clicked wavesurfer first
+    waveSurfers[sourceName].seekTo(progress);
+    
+    // Then seek others
+    Object.entries(waveSurfers).forEach(([name, ws]) => {
+      if (name !== sourceName) {
+        ws.seekTo(progress);
+      }
     });
     
-    // Resume playback if it was playing
-    if (wasPlaying) {
+    // Resume if was playing
+    if (isPlaying) {
       Object.values(waveSurfers).forEach(ws => ws.play());
     }
   };
