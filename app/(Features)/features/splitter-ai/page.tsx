@@ -238,7 +238,6 @@ export default function SplitterAI() {
             progressColor: toolColor[index].fr,
             height: 64,
             normalize: true,
-            responsive: true,
             backgroundColor: toolColor[index].bg,
             barWidth: 2,
             barHeight: 0.1,
