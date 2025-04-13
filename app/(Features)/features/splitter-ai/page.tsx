@@ -238,13 +238,12 @@ export default function SplitterAI() {
             progressColor: toolColor[index].fr,
             height: 64,
             normalize: true,
-            backgroundColor: toolColor[index].bg,
+            // backgroundColor: toolColor[index].bg,
             barWidth: 2,
             barHeight: 0.1,
             barGap: 1,
             cursorColor: toolColor[index].fr,
             cursorWidth: 2,
-            cursorHeight: 3,
           });
 
           wavesurfer.load(file.download_url);
