@@ -7,7 +7,7 @@ import { useState, useRef, useEffect } from 'react';
 import WaveSurfer from 'wavesurfer.js';
 
 // Update the hook type definition
-function useClickOutside(ref: React.RefObject<HTMLDivElement>, handler: () => void) {
+function useClickOutside(ref: React.RefObject<HTMLDivElement | null>, handler: () => void) {
   useEffect(() => {
     const listener = (event: MouseEvent | TouchEvent) => {
       if (!ref.current || ref.current.contains(event?.target as Node)) {
@@ -434,7 +434,9 @@ export default function SplitterAI() {
       {/* WaveForms Section*/}
       <div className="flex-1">
         <div
-          ref={el => waveformRefs.current[source.source_name] = el}
+          ref={(el: HTMLDivElement | null) => {
+            if (el) waveformRefs.current[source.source_name] = el;
+          }}
           style={{ 
             backgroundColor: toolColor[index].bg,
           }}
