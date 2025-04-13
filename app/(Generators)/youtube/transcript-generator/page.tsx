@@ -62,7 +62,7 @@ export default function YouTubeTranscriptGenerator() {
                 <svg
                   viewBox="0 0 16 16"
                   fill="none"
-                  style={{ filter: "drop-shadow(0 0 8px rgba(0, 211, 243, 0.4))" }}
+                  style={{ filter: "drop-shadow(0 0 8px rgba(21, 69, 77, 0.4))" }}
                   className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"
                 >
                   <path

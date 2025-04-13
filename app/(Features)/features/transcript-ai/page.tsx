@@ -1,5 +1,6 @@
 "use client";
 
+import { API_BASE_URL } from "@/app/utils/config";
 import { useState, useRef, useEffect } from "react";
 
 export default function TranscriptAI() {
@@ -56,7 +57,7 @@ export default function TranscriptAI() {
       }, 30);
 
       // Make API request
-      const response = await fetch("/api/transcript-ai", {
+      const response = await fetch(`${API_BASE_URL}/api/transcript-ai`, {
         method: "POST",
         body: formData,
       });
@@ -88,7 +89,7 @@ export default function TranscriptAI() {
   // Function to check task status
   const checkTaskStatus = async (taskId: string) => {
     try {
-      const response = await fetch(`/api/transcript-status/${taskId}`);
+      const response = await fetch(`${API_BASE_URL}/api/transcript-status/${taskId}`);
       const data = await response.json();
 
       // Update progress based on status
@@ -333,7 +334,7 @@ export default function TranscriptAI() {
               <option value="zu" data-flag="🇿🇦">🇿🇦 Zulu</option>
             </select>
           </div>
-          <p className="text-xs text-gray-500 mt-3">Supports MP4, MP3 ... • 50 MB</p>
+          <p className="text-xs text-gray-500 mt-3">Supports MP4-MP3 • 50 MB</p>
         </div>
 
         {/* Upload progress container */}

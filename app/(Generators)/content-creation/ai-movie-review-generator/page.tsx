@@ -34,7 +34,18 @@ export default function AIMovieReviewGenerator() {
       if (data.error) {
         setError(data.message || 'Failed to generate review. Please try again.');
       } else {
-        setReview(data.data || "No review generated.");
+        const formattedContent = data.data
+          .replace(/\n\n/g, "\n\n\n") // Fix paragraph spacing
+          .replace(/^#{1}\s/gm, "# ") // Fix h1 spacing
+          .replace(/^#{2}\s/gm, "## ") // Fix h2 spacing
+          .replace(/^#{3}\s/gm, "### ") // Fix h3 spacing
+          .replace(/^#{4}\s/gm, "#### ") // Fix h4 spacing
+          .replace(/^#{5}\s/gm, "##### ") // Fix h5 spacing
+          .replace(/^#{6}\s/gm, "###### ") // Fix h6 spacing
+          .replace(/^\*\s/gm, "* ") // Fix list item spacing
+          .replace(/^\d\.\s/gm, "$&"); // Fix ordered list spacing
+
+        setReview(formattedContent || "No review generated.");
       }
     } catch (error) {
       setError('Failed to generate review. Please try again.');
@@ -248,7 +259,7 @@ export default function AIMovieReviewGenerator() {
               </svg>
               <span className="font-semibold text-red-400">Error</span>
             </div>
-            <p className="text-red-300 mt-2" dangerouslySetInnerHTML={{ __html: error }}></p>
+            <p className="text-red-300 mt-2">{error}</p>
           </div>
         )}
       </div>

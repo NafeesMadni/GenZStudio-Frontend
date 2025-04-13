@@ -49,13 +49,27 @@ export default function YouTubeVideoDownloader() {
     }
   }
   
-  const handleVideoDownload = () => {
-    window.location.href = `/api/stream/video?video_url=${encodeURIComponent(videoUrl)}`
+  const handleDownload = async (type: 'video' | 'audio') => {
+    try {
+      const response = await fetch(`/api/stream/${type}?video_url=${encodeURIComponent(videoUrl)}`)
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.style.display = 'none'
+      a.href = url
+      a.download = `${videoTitle.replace(/[^a-z0-9]/gi, '_')}.${type === 'video' ? 'mp4' : 'mp3'}`
+      document.body.appendChild(a)
+      a.click()
+      window.URL.revokeObjectURL(url)
+      document.body.removeChild(a)
+    } catch (error) {
+      console.error('Download error:', error)
+      setError('Failed to download the file')
+    }
   }
-  
-  const handleAudioDownload = () => {
-    window.location.href = `/api/stream/audio?video_url=${encodeURIComponent(videoUrl)}`
-  }
+
+  const handleVideoDownload = () => handleDownload('video')
+  const handleAudioDownload = () => handleDownload('audio')
   
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-slate-900">
