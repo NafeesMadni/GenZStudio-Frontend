@@ -288,8 +288,8 @@ export default function Home() {
       `}</style>
 
       {/* Fixed Background Elements */}
-      <div className="page-background"></div>
-      <div className="noise-overlay"></div>
+      {/* <div className="page-background"></div>
+      <div className="noise-overlay"></div> */}
 
       {/* Hero Section */}
       <section className="content-section relative min-h-screen flex items-center justify-center">

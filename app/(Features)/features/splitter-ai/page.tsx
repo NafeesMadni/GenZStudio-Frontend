@@ -452,7 +452,7 @@ export default function SplitterAI() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 p-4 sm:p-8 md:py-16">
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900/50 to-slate-950 p-4 sm:p-8 md:py-16">
       {/* Header Section */}
       <div className="text-center mb-8 sm:mb-12">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
@@ -524,7 +524,7 @@ export default function SplitterAI() {
         <div className="relative">
 
           {/* Master Controls */}
-          <div className="sticky top-0 z-20 bg-slate-900/95 backdrop-blur-md border-b border-sky-500/10">
+          <div className="sticky top-0 z-20  backdrop-blur-md border-b border-sky-500/10">
             <div className="max-w-7xl mx-auto px-2 sm:px-4">
               <div className="flex flex-row items-center justify-between h-14 sm:h-16">
                 {/* Left side controls */}

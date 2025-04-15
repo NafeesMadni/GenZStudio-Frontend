@@ -43,9 +43,14 @@ export default function RootLayout({
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
       </head>
       <body
-      // className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-950 text-slate-100 min-h-screen`}
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-slate-900 to-slate-800 text-slate-100 min-h-screen`}
       >
+        
+        
+      {/* Fixed Background Elements */}
+      <div className="page-background"></div>
+      <div className="noise-overlay"></div>
+
         <Navigation />
         {children}
         <Analytics />
@@ -55,35 +60,52 @@ export default function RootLayout({
           document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuButton = document.getElementById("mobile-menu-button");
             const mobileMenu = document.getElementById("mobile-menu");
+            const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+
+            function closeMobileMenu() {
+              mobileMenu.classList.remove("active");
+              mobileMenuOverlay.classList.add("hidden");
+              document.body.style.overflow = "";
+            }
 
             if (mobileMenuButton && mobileMenu) {
               mobileMenuButton.addEventListener("click", () => {
                 mobileMenu.classList.toggle("active");
-                // Prevent body scrolling when menu is open
+                mobileMenuOverlay.classList.toggle("hidden");
                 document.body.style.overflow = mobileMenu.classList.contains("active")
                   ? "hidden"
                   : "";
+              });
+
+              // Close menu when clicking links inside mobile menu
+              const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+              Array.from(mobileMenuLinks).forEach(link => {
+                link.addEventListener('click', (e) => {
+                  closeMobileMenu();
+                });
+              });
+
+              // Close menu when clicking outside
+              document.addEventListener('click', (event) => {
+                if (!mobileMenu.contains(event.target) && 
+                    !mobileMenuButton.contains(event.target) && 
+                    mobileMenu.classList.contains('active')) {
+                  closeMobileMenu();
+                }
               });
             }
 
             // Close mobile menu on window resize
             window.addEventListener("resize", () => {
-              if (window.innerWidth >= 768 && mobileMenu) {
-                mobileMenu.classList.remove("active");
-                document.body.style.overflow = "";
+              if (window.innerWidth >= 768 && mobileMenu && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
               }
             });
-
-            const closeMenu = document.getElementById("close-menu");
-            if (closeMenu && mobileMenu) {
-              closeMenu.addEventListener("click", function () {
-                mobileMenu.classList.add("hidden");
-              });
-            }
           });
         `}} />
         <style>
           {`
+
             :root {
               --background: #0f172a;
               --foreground: #f8fafc;
@@ -101,6 +123,22 @@ export default function RootLayout({
                 --background: #0f172a;
                 --foreground: #f8fafc;
               }
+            }
+            /* Add new background styles */
+            .page-background {
+              background: radial-gradient(circle at 50% 0%, #0c1220 0%, #060913 100%);
+              position: fixed;
+              inset: 0;
+              z-index: -2;
+            }
+
+            .noise-overlay {
+              position: fixed;
+              inset: 0;
+              background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+              opacity: 0.4;
+              z-index: -1;
+              pointer-events: none;
             }
             .dropdown-menu {
               opacity: 0;
@@ -124,7 +162,6 @@ export default function RootLayout({
               left: 0;
               width: 100%;
               height: calc(100vh - 64px);
-              background-color: #1f2937;
               z-index: 40;
               overflow-y: auto;
               -ms-overflow-style: none;
@@ -649,7 +686,7 @@ function Navigation() {
       ></div>
 
       {/* Mobile Menu Panel */}
-      <div id="mobile-menu" className="mobile-menu bg-slate-900/95">
+      <div id="mobile-menu" className="mobile-menu bg-slate-950/95">
         <div className="px-4 py-2">
           {/* Free Tools Section */}
           <div className="pb-4">
@@ -1300,30 +1337,6 @@ function Footer() {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="/spotify-playlist-downloader"
-                    className="link-hover-effect footer-link text-sm text-gray-400"
-                  >
-                    Spotify Playlist Downloader
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/youtube-downloader"
-                    className="link-hover-effect footer-link text-sm text-gray-400"
-                  >
-                    Youtube Video Downloader
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/instagram-video-downloader"
-                    className="link-hover-effect footer-link text-sm text-gray-400"
-                  >
-                    Instagram Reels Downloader
-                  </Link>
-                </li>
-                <li>
-                  <Link
                     href="/content-creation/ai-movie-review-generator"
                     className="link-hover-effect footer-link text-sm text-gray-400"
                   >
@@ -1345,6 +1358,30 @@ function Footer() {
                     className="link-hover-effect footer-link text-sm text-gray-400"
                   >
                     Image Generator
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/spotify-playlist-downloader"
+                    className="link-hover-effect footer-link text-sm text-gray-400"
+                  >
+                    Spotify Playlist Downloader
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/youtube-downloader"
+                    className="link-hover-effect footer-link text-sm text-gray-400"
+                  >
+                    Youtube Video Downloader
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/instagram-video-downloader"
+                    className="link-hover-effect footer-link text-sm text-gray-400"
+                  >
+                    Instagram Reels Downloader
                   </Link>
                 </li>
               </ul>
