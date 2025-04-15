@@ -649,7 +649,7 @@ function Navigation() {
       ></div>
 
       {/* Mobile Menu Panel */}
-      <div id="mobile-menu" className=" bg-slate-900/95">
+      <div id="mobile-menu" className="mobile-menu bg-slate-900/95">
         <div className="px-4 py-2">
           {/* Free Tools Section */}
           <div className="pb-4">
