@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {  } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/next';
+
+import { Geist, Geist_Mono, Space_Grotesk  } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { ReactNode } from "react";
 
+const logo_font = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['700'],
+})
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,13 +38,17 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet"/>
+
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
       </head>
       <body
+      // className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-950 text-slate-100 min-h-screen`}
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-slate-900 to-slate-800 text-slate-100 min-h-screen`}
       >
         <Navigation />
         {children}
+        <Analytics />
         <Footer />
         <script dangerouslySetInnerHTML={{ __html: `
           // Mobile menu functionality
@@ -189,23 +200,26 @@ export default function RootLayout({
 
 function Navigation() {
   return (
-    <nav className="bg-slate-800/90 backdrop-blur-md shadow-lg sticky top-0 z-50">
+    <nav className="bg-slate-900/80 backdrop-blur-xl shadow-2xl sticky top-0 z-50 border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/">
-            <div className="text-2xl font-bold text-cyan-400">GenZStudio</div>
+          <Link href="/" className="group">
+            <div className={`text-2xl lg:text-3xl ${logo_font.className}  bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent `}>
+              GenZStudio
+            </div>
           </Link>
+          
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-6">
-            <ul className="flex space-x-6">
-              <li className="relative dropdown">
-                <button
-                  className="text-slate-300 hover:text-cyan-400 font-medium focus:outline-none transition-colors duration-200"
-                >
+          <div className="hidden md:flex items-center space-x-8">
+            <ul className="flex space-x-8">
+              <li className="relative dropdown group">
+                <button className="text-slate-300 hover:text-cyan-400 font-medium focus:outline-none transition-all duration-200 flex items-center gap-1 group-hover:scale-105">
                   Free Tools
+                  <svg className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
                 </button>
-                {/* Dropdown Menu */}
                 <div
                   className="dropdown-menu absolute left-0 mt-2 w-[600px] lg:w-[720px] bg-slate-900/95 backdrop-blur-md shadow-xl rounded-lg p-6"
                 >
@@ -613,35 +627,18 @@ function Navigation() {
 
           {/* Desktop Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button
-              className="px-4 py-2 border border-slate-600 rounded-md text-slate-300 hover:border-cyan-400 hover:text-cyan-400 transition-colors duration-200"
-            >
+            <button className="px-4 py-2 border border-slate-600/50 rounded-lg text-slate-300 hover:text-cyan-400 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 backdrop-blur-sm">
               Login
             </button>
-            <button
-              className="px-4 py-2 bg-cyan-500 text-white rounded-md hover:bg-cyan-600 transition-colors duration-200"
-            >
+            <button className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg hover:from-cyan-400 hover:to-blue-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25">
               Try For Free
             </button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            id="mobile-menu-button"
-            className="md:hidden text-slate-300 hover:text-cyan-400"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              ></path>
+          <button id="mobile-menu-button" className="md:hidden text-slate-300 hover:text-cyan-400 transition-colors duration-200">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
           </button>
         </div>
@@ -652,7 +649,7 @@ function Navigation() {
       ></div>
 
       {/* Mobile Menu Panel */}
-      <div id="mobile-menu" className="mobile-menu bg-slate-900/95">
+      <div id="mobile-menu" className=" bg-slate-900/95">
         <div className="px-4 py-2">
           {/* Free Tools Section */}
           <div className="pb-4">
@@ -1069,18 +1066,14 @@ function Navigation() {
 
 function Footer() {
   return (
-    <footer
-      className="bg-slate-800/50 backdrop-blur-sm py-12 px-5 md:px-20 text-slate-300"
-    >
+    <footer className="bg-slate-900/50 backdrop-blur-sm py-12 px-5 md:px-20 text-slate-300">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Left Section with enhanced styling */}
+          {/* Left Section */}
           <div className="md:col-span-1 space-y-6">
             <div className="flex items-center space-x-2">
-              <span
-                className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
-              >
+              <span className={`text-3xl ${logo_font.className} font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent`}>
                 GenZStudio
               </span>
             </div>
@@ -1089,7 +1082,7 @@ function Footer() {
               videos in seconds for teams and businesses.
             </p>
 
-            {/* Enhanced Social Icons */}
+            {/* Social Icons */}
             <div className="flex space-x-4 mt-6">
               <a
                 href="https://github.com/NafeesMadni"
@@ -1178,9 +1171,7 @@ function Footer() {
           </div>
 
           {/* Right Sections Grid */}
-          <div
-            className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 footer-grid"
-          >
+          <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {/* Company Section */}
             <div className="footer-section space-y-4">
               <h3
@@ -1304,23 +1295,15 @@ function Footer() {
               <h3
                 className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
               >
-                Tools
+                Free Tools
               </h3>
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="/youtube/title-generator"
+                    href="/spotify-playlist-downloader"
                     className="link-hover-effect footer-link text-sm text-gray-400"
                   >
-                    YT Title Generator
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/youtube/title-generator"
-                    className="link-hover-effect footer-link text-sm text-gray-400"
-                  >
-                    Video Script
+                    Spotify Playlist Downloader
                   </Link>
                 </li>
                 <li>
@@ -1328,23 +1311,7 @@ function Footer() {
                     href="/youtube-downloader"
                     className="link-hover-effect footer-link text-sm text-gray-400"
                   >
-                    YT Video Downloader
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/tiktok/hashtag-generator"
-                    className="link-hover-effect footer-link text-sm text-gray-400"
-                  >
-                    TT Hashtags Generator
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/tiktok/caption-generator"
-                    className="link-hover-effect footer-link text-sm text-gray-400"
-                  >
-                    TT Caption Generator
+                    Youtube Video Downloader
                   </Link>
                 </li>
                 <li>
@@ -1352,7 +1319,32 @@ function Footer() {
                     href="/instagram-video-downloader"
                     className="link-hover-effect footer-link text-sm text-gray-400"
                   >
-                    IG Video Downloader
+                    Instagram Reels Downloader
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/content-creation/ai-movie-review-generator"
+                    className="link-hover-effect footer-link text-sm text-gray-400"
+                  >
+                    Movie Reviewer
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/content-creation/ai-series-review-generator"
+                    className="link-hover-effect footer-link text-sm text-gray-400"
+                  >
+                    Series Reviewer
+                  </Link>
+                </li>
+               
+                <li>
+                  <Link
+                    href="/content-creation/ai-image-generator"
+                    className="link-hover-effect footer-link text-sm text-gray-400"
+                  >
+                    Image Generator
                   </Link>
                 </li>
               </ul>
@@ -1360,25 +1352,15 @@ function Footer() {
           </div>
         </div>
 
-        {/* Enhanced Bottom Section */}
+        {/* Bottom Section */}
         <div className="border-t border-slate-700/50 mt-12 pt-8">
-          <div
-            className="flex flex-col md:flex-row justify-between items-center gap-4"
-          >
-            <div
-              className="flex flex-wrap justify-center md:justify-start gap-6 text-sm text-gray-400"
-            >
-              <Link
-                href="#"
-                className="link-hover-effect transition-colors duration-200"
-              >
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm text-gray-400">
+              <Link href="#" className="link-hover-effect transition-colors duration-200">
                 Terms of Service
               </Link>
               <span className="hidden md:inline text-gray-600">•</span>
-              <Link
-                href="#"
-                className="link-hover-effect transition-colors duration-200"
-              >
+              <Link href="#" className="link-hover-effect transition-colors duration-200">
                 Privacy Policy
               </Link>
             </div>
@@ -1386,9 +1368,7 @@ function Footer() {
               Made with
               <span className="mx-1 text-red-500">❤</span>
               in PK - © 2025 
-              <span
-                className="text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors duration-200 pl-1"
-              >
+              <span className="text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors duration-200 pl-1">
                 GenZStudio
               </span>
             </p>

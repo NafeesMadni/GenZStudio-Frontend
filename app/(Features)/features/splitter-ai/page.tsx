@@ -37,7 +37,11 @@ const demoData = {
   "data": {
     "file_name": "Demo",
     "audio_files": [
-        {'source_name': 'Drums', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/0a006e35-366b-4302-9aac-3e4047a477b0.mp3?'}, 
+      // {'source_name': 'Drums', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/4ac19c8e-9303-42ba-ad5e-d586d296bdd3.mp3?'}, 
+      // {'source_name': 'Bass', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/aeccd70d-dbb9-4e83-8426-59abb8811ad5.mp3?'}, 
+      // {'source_name': 'Music', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/beee74ac-52d9-49ee-8225-710a01580b5f.mp3?'}, 
+      // {'source_name': 'Vocal', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/01037868-4e04-405f-b8a2-88e5c3a98229.mp3?'}  
+      {'source_name': 'Drums', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/0a006e35-366b-4302-9aac-3e4047a477b0.mp3?'}, 
         {'source_name': 'Bass', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/05139482-3111-4d75-984c-09a31f80f3c5.mp3?'},
         {'source_name': 'Music', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/ed6d9db1-baa6-46c5-8c62-eba92e7d1fc0.mp3?'}, 
         {'source_name': 'Vocal', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/3290f7ef-60cb-4dfe-8c1d-cd40e1a191bc.mp3?'}
@@ -634,7 +638,7 @@ export default function SplitterAI() {
               <p className="font-bold text-red-400 text-sm sm:text-base">Error</p>
             </div>
             <p className="text-sm sm:text-base text-red-300 mt-2" dangerouslySetInnerHTML={{ __html: error }}></p>
-          </div>W
+          </div>
         </div>
       )}
 
