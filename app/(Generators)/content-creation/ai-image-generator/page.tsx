@@ -7,6 +7,7 @@ export default function AIImageGenerator() {
   const [prompt, setPrompt] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImages, setGeneratedImages] = useState<string[]>([]);
+  const [error, setError] = useState('');
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error'; visible: boolean }>({
     message: '',
     type: 'success',
@@ -25,37 +26,58 @@ export default function AIImageGenerator() {
     
     if (!prompt.trim()) return;
     
+    setGeneratedImages([]);
     setIsLoading(true);
+    setError('');
     
     try {
-      const response = await fetch(`${API_BASE_URL}/api/generate-images`, {
-        method: "POST",
+      const response = await fetch(`${API_BASE_URL}/api/content-creation/ai-image-generator`, {
+        method: 'POST',
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({ 
+          prompt:prompt
+        }),
       });
 
       const data = await response.json();
+      console.log('API Response:', data);
 
       if (data.error) {
-        throw new Error(data.error);
+        setError(data.message || "An error occurred");
+        return;
       }
 
-      setGeneratedImages(data.images);
-      showToast("Images generated successfully!");
+      if (data.data && data.data.img) {
+        console.log('Image data received');
+        setGeneratedImages([data.data.img]);
+        showToast("Image generated successfully!");
+      } else {
+        console.warn('No image found in response:', data);
+        setGeneratedImages([]);
+        setError('No image was generated');
+      }
     } catch (error) {
-      showToast(error instanceof Error ? "Our API is currently under development and not live yet." : "Failed to generate images", "error");
+      setError(error instanceof Error ? error.message : "Failed to generate image");
     } finally {
       setIsLoading(false);
     }
   };
 
-  const previewImage = (url: string) => {
-    window.open(url, "_blank");
+  const previewImage = (base64String: string) => {
+    const imageDataUrl = base64String.startsWith('data:image') 
+      ? base64String 
+      : `data:image/png;base64,${base64String}`;
+      
+    window.open(imageDataUrl, "_blank");
   };
 
-  const downloadImage = (url: string) => {
+  const downloadImage = (base64String: string) => {
+    const imageDataUrl = base64String.startsWith('data:image') 
+      ? base64String 
+      : `data:image/png;base64,${base64String}`;
+      
     const link = document.createElement("a");
-    link.href = url;
+    link.href = imageDataUrl;
     link.download = `generated-image-${Date.now()}.png`;
     document.body.appendChild(link);
     link.click();
@@ -124,26 +146,65 @@ export default function AIImageGenerator() {
           </form>
         </div>
 
-        {generatedImages.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {generatedImages.map((imageUrl, index) => (
-              <div key={index} className="image-card">
-                <img src={imageUrl} alt="Generated image" className="w-full h-64 object-cover" />
-                <div className="image-actions">
-                  <button onClick={() => previewImage(imageUrl)} className="action-btn">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                    </svg>
-                  </button>
-                  <button onClick={() => downloadImage(imageUrl)} className="action-btn">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                    </svg>
-                  </button>
+        {generatedImages && generatedImages.length > 0 && (
+          <div className="grid grid-cols-1 place-items-center gap-6 max-w-3xl mx-auto mt-8">
+            {generatedImages.map((imageBase64, index) => {
+              console.log(`Processing image ${index}:`, imageBase64?.substring(0, 50) + '...');
+              
+              const imageUrl = imageBase64?.startsWith('data:image') 
+                ? imageBase64 
+                : `data:image/png;base64,${imageBase64}`;
+                
+              return (
+                <div key={index} className="image-card w-full max-w-md">
+                  <img 
+                    src={imageUrl} 
+                    alt={`Generated image ${index + 1}`} 
+                    className="w-full h-64 object-cover"
+                    onError={(e) => {
+                      console.error('Image failed to load:', e);
+                      e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzIyMiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPkltYWdlIGZhaWxlZCB0byBsb2FkPC90ZXh0Pjwvc3ZnPg==';
+                    }}
+                  />
+                  <div className="image-actions">
+                    <button onClick={() => previewImage(imageBase64)} className="action-btn">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                      </svg>
+                    </button>
+                    <button onClick={() => downloadImage(imageBase64)} className="action-btn">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                      </svg>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+        )}
+
+        {/* Error Message */}
+        {error && (
+          <div className="max-w-3xl mx-auto mt-8 p-6 bg-red-500/10 border border-red-500/50 rounded-xl">
+            <div className="flex items-center gap-3">
+              <svg
+                className="w-5 h-5 text-red-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span className="font-semibold text-red-400">Error</span>
+            </div>
+            <p className="text-red-300 mt-2">{error}</p>
           </div>
         )}
       </div>

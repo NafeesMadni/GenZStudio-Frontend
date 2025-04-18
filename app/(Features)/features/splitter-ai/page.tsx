@@ -37,14 +37,10 @@ const demoData = {
   "data": {
     "file_name": "Demo",
     "audio_files": [
-      // {'source_name': 'Drums', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/4ac19c8e-9303-42ba-ad5e-d586d296bdd3.mp3?'}, 
-      // {'source_name': 'Bass', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/aeccd70d-dbb9-4e83-8426-59abb8811ad5.mp3?'}, 
-      // {'source_name': 'Music', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/beee74ac-52d9-49ee-8225-710a01580b5f.mp3?'}, 
-      // {'source_name': 'Vocal', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/01037868-4e04-405f-b8a2-88e5c3a98229.mp3?'}  
-      {'source_name': 'Drums', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/0a006e35-366b-4302-9aac-3e4047a477b0.mp3?'}, 
-        {'source_name': 'Bass', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/05139482-3111-4d75-984c-09a31f80f3c5.mp3?'},
-        {'source_name': 'Music', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/ed6d9db1-baa6-46c5-8c62-eba92e7d1fc0.mp3?'}, 
-        {'source_name': 'Vocal', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/3290f7ef-60cb-4dfe-8c1d-cd40e1a191bc.mp3?'}
+        {'source_name': 'Drums', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/afusic-pal-pal-official-music-81db61f0-1fb1-4ae0-9627-d927010df7a5.mp3?'}, 
+        {'source_name': 'Bass', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/afusic-pal-pal-official-music-4e56858f-0f3a-422f-a56b-267597d8f762.mp3?'},
+        {'source_name': 'Music', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/afusic-pal-pal-official-music-7946d0b4-0f03-4b3b-9871-7185269817f7.mp3?'}, 
+        {'source_name': 'Vocal', 'download_url': 'https://ujbzjpmepbcrqmrrkbib.supabase.co/storage/v1/object/public/Media-Files/splitter_ai/afusic-pal-pal-official-music-c7b73a56-0db7-40d0-8355-229fcc29f0e7.mp3?'}
       ],
   },
   "message":"Sucess",

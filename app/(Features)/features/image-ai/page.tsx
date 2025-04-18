@@ -1,4 +1,3 @@
-
 'use client';
 
 import { API_BASE_URL } from '@/app/utils/config';
@@ -12,6 +11,7 @@ export default function ImageAI() {
   const [isPreviewingOriginal, setIsPreviewingOriginal] = useState<boolean>(false);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [backgroundPrompt, setBackgroundPrompt] = useState<string>('');
+  const [error, setError] = useState<string>('');
   const [toast, setToast] = useState<{message: string; type: string; visible: boolean}>({
     message: '',
     type: 'success',
@@ -69,6 +69,7 @@ export default function ImageAI() {
     setOriginalImage(null);
     setProcessedImage(null);
     setBackgroundPrompt('');
+    setError('');
     if (fileInputRef.current) fileInputRef.current.value = '';
     if (previewTimeoutRef.current) {
       clearTimeout(previewTimeoutRef.current);
@@ -115,8 +116,7 @@ export default function ImageAI() {
     }
 
     const formData = new FormData();
-    formData.append('file', fileInputRef.current.files[0]);
-
+    
     if (selectedTool === 'replace-bg') {
       if (!backgroundPrompt) {
         showToast('Please describe the new background', 'error');
@@ -124,8 +124,10 @@ export default function ImageAI() {
       }
       formData.append('prompt', backgroundPrompt);
     }
-
+    
+    formData.append('file', fileInputRef.current.files[0]);
     setIsProcessing(true);
+    setError('');
 
     try {
       const response = await fetch(`${API_BASE_URL}/api/${selectedTool}`, {
@@ -144,9 +146,8 @@ export default function ImageAI() {
       }
     } catch (error) {
       console.error('Error:', error);
-      showToast(
-        error instanceof Error ? error.message : 'Failed to process image. Please try again.',
-        'error'
+      setError(
+        error instanceof Error ? error.message : 'Failed to process image. Please try again.'
       );
     } finally {
       setIsProcessing(false);
@@ -355,6 +356,29 @@ export default function ImageAI() {
             </div>
           </div>
         </div>
+
+        {/* Error Message */}
+        {error && (
+          <div className="w-full max-w-2xl mx-auto mt-8 p-6 bg-red-500/10 border border-red-500/50 rounded-xl">
+            <div className="flex items-center gap-3">
+              <svg
+                className="w-5 h-5 text-red-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span className="font-semibold text-red-400">Error</span>
+            </div>
+            <p className="text-red-300 mt-2">{error}</p>
+          </div>
+        )}
       </div>
 
       {/* Toast notification */}
