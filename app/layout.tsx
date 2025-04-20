@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import {  } from '@vercel/analytics/next';
 import { Analytics } from '@vercel/analytics/next';
-
+import { Toaster } from 'react-hot-toast';
 import { Geist, Geist_Mono, Space_Grotesk  } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
@@ -45,7 +44,29 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-slate-900 to-slate-800 text-slate-100 min-h-screen`}
       >
-        
+        <Toaster 
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: '#1e293b',
+              color: '#e2e8f0',
+              borderRadius: '0.5rem',
+              border: '1px solid rgba(14, 165, 233, 0.1)',
+            },
+            success: {
+              iconTheme: {
+                primary: '#22c55e',
+                secondary: '#1e293b',
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: '#ef4444',
+                secondary: '#1e293b',
+              },
+            },
+          }}
+        />
         
       {/* Fixed Background Elements */}
       <div className="page-background"></div>

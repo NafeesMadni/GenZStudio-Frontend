@@ -1,5 +1,6 @@
 'use client'
 
+import { toast } from 'react-hot-toast'
 import { API_BASE_URL } from '@/app/utils/config'
 import { useState, useRef } from 'react'
 
@@ -8,8 +9,9 @@ export default function SpotifyTrackDownloader() {
   const [title, setTitle] = useState('')
   const [artistName, setArtistName] = useState('')
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
   const [showResult, setShowResult] = useState(false)
+  const [downloadProgress, setDownloadProgress] = useState<{[key: string]: number}>({})
+  const [downloading, setDownloading] = useState<{[key: string]: boolean}>({})
   
   const downloadButtonRef = useRef<HTMLButtonElement>(null)
   
@@ -19,7 +21,6 @@ export default function SpotifyTrackDownloader() {
     if (!trackUrl) return
     
     setLoading(true)
-    setError('')
     setShowResult(false)
     
     try {
@@ -34,22 +35,96 @@ export default function SpotifyTrackDownloader() {
       const data = await response.json()
       
       if (data.error) {
-        setError(data.message || 'Error fetching track information')
+        toast.error(data.message || 'Error fetching track information')
       } else {
         setTitle(data.data.title)
         setArtistName(data.data.artistName)
         setShowResult(true)
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error)
-      setError('Failed to fetch track information')
+      toast.error(error?.message || 'Failed to fetch track information')
     } finally {
       setLoading(false)
     }
   }
-  
-  const handleDownload = () => {
-    window.location.href = `/api/stream/track?title=${encodeURIComponent(title)}&artistName=${encodeURIComponent(artistName)}`
+
+  const handleDownload = async () => {
+    if (!trackUrl.trim()) {
+      return;
+    }
+
+
+    try {
+      setDownloading(prev => ({ ...prev, audio: true }));
+      setDownloadProgress(prev => ({ ...prev, audio: 0 }));
+
+      const apiUrl = `${API_BASE_URL}/api/stream/track?title=${encodeURIComponent(title)}&artistName=${encodeURIComponent(artistName)}`;
+      const response = await fetch(apiUrl);
+
+      if (response.headers.get('content-type')?.includes('application/json')) {
+        const data = await response.json();
+        if (data.error) {
+          throw new Error(data.message || 'Error downloading track');
+        }
+      }
+
+      const contentDisposition = response.headers.get('content-disposition');
+      let filename = contentDisposition ? 
+        contentDisposition.split('filename=')[1].replace(/"/g, '') : 
+        `${title}.mp3`;
+
+      const contentLength = response.headers.get('content-length');
+      const total = contentLength ? parseInt(contentLength, 10) : 0;
+      const reader = response.body?.getReader();
+
+      if (!reader) {
+        throw new Error('Stream reader not available');
+      }
+
+      let receivedLength = 0;
+      let chunks = [];
+
+      while(true) {
+        const { done, value } = await reader.read();
+        
+        if (done) {
+          break;
+        }
+        
+        chunks.push(value);
+        receivedLength += value.length;
+        
+        if (total) {
+          const progress = Math.round((receivedLength / total) * 100);
+          setDownloadProgress(prev => ({ ...prev, audio: progress }));
+        } else if (chunks.length % 10 === 0) {
+          setDownloadProgress(prev => ({ 
+            ...prev, 
+            audio: prev.audio < 99 ? prev.audio + 1 : 99 
+          }));
+        }
+      }
+
+      // Create blob and download
+      const blob = new Blob(chunks, { type: 'audio/mpeg' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+
+      setDownloadProgress(prev => ({ ...prev, audio: 100 }));
+      toast.success('Download completed!');
+      
+    } catch (error: any) {
+      toast.error(error?.message || 'Failed to download track');
+    } finally {
+      setDownloading(prev => ({ ...prev, audio: false }));
+    }
   }
   
   return (
@@ -179,48 +254,37 @@ export default function SpotifyTrackDownloader() {
               <button
                 ref={downloadButtonRef}
                 onClick={handleDownload}
+                disabled={downloading.audio}
                 className="flex-shrink-0 inline-flex items-center gap-2 bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-white font-medium px-4 py-2 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 group-hover:-translate-y-1 transition-transform duration-300"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                  />
-                </svg>
-                <span className="hidden sm:inline">Download</span>
+                {downloading.audio ? (
+                  <>
+                    <svg className="w-5 h-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    {downloadProgress.audio > 0 ? `${downloadProgress.audio}%` : 'Downloading...'}
+                  </>
+                ) : (
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 group-hover:-translate-y-1 transition-transform duration-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                      />
+                    </svg>
+                    <span className="hidden sm:inline">Download</span>
+                  </>
+                )}
               </button>
-            </div>
-          </div>
-        )}
-
-        {error && (
-          <div className="mt-8">
-            <div className="p-6 bg-red-500/10 border border-red-500/50 rounded-xl backdrop-blur-sm">
-              <div className="flex items-center gap-3">
-                <svg
-                  className="w-5 h-5 text-red-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <p className="font-bold text-red-400">Error</p>
-              </div>
-              <p className="text-red-300 mt-2" dangerouslySetInnerHTML={{ __html: error }}></p>
             </div>
           </div>
         )}

@@ -17,6 +17,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-h5-audio-player": "^3.10.0-rc.1",
+    "react-hot-toast": "^2.5.2",
     "react-markdown": "^10.1.0",
     "wavesurfer.js": "^7.9.4"
   },
