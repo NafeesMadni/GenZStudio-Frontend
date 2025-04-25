@@ -1,0 +1,140 @@
+.toolButton {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toolButton:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px -15px rgba(14, 165, 233, 0.15),
+    0 0 20px rgba(14, 165, 233, 0.1);
+}
+
+.toolButton.active {
+  border-color: rgba(34, 211, 238, 0.5);
+  background: rgba(14, 165, 233, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -15px rgba(14, 165, 233, 0.2),
+    0 0 25px rgba(14, 165, 233, 0.1);
+}
+
+.toolIcon {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toolButton:hover .toolIcon {
+  transform: scale(1.1);
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #22d3ee, #0ea5e9, #0ea5e9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.previewIcon {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  padding: 4px;
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 9999px;
+  color: #22d3ee;
+  cursor: pointer;
+  display: none;
+}
+
+.previewIcon.show {
+  display: block;
+  opacity: 1;
+}
+
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast.success {
+  background: rgba(16, 185, 129, 0.85);
+}
+
+.toast.error {
+  background: rgba(239, 68, 68, 0.85);
+}
+
+.dropZone {
+  background: rgba(15, 23, 42, 0.3);
+  backdrop-filter: blur(10px);
+  border: 2px dashed rgba(34, 211, 238, 0.3);
+  transition: all 0.3s ease;
+}
+
+.dropZone:hover {
+  border-color: rgba(34, 211, 238, 0.6);
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.1);
+}
+
+.processBtn {
+  background: linear-gradient(135deg, #22d3ee, #0ea5e9);
+  transition: all 0.3s ease;
+  position: relative;
+  color: white;
+  transform: translateY(0);
+}
+
+.processBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -10px rgba(34, 211, 238, 0.5);
+}
+
+.downloadBtn {
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.downloadBtn:hover {
+  background: rgba(15, 23, 42, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.1);
+}
+
+@media (max-width: 768px) {
+  .toolsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+} 
