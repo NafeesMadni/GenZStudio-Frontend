@@ -399,7 +399,7 @@ export default function SplitterAI() {
   const renderTrackControl = (source: AudioFile, index: number) => (
     <div key={index} className="flex">
       {/* Source Name & Volume Adjuster Section*/}
-      <div className={`lg:flex items-center justify-center px-4 py-2  mr-1 bg-slate-900  ${index == 0 ? 'rounded-tl-lg' : ''} ${index == 3 ? 'rounded-bl-lg' : ''}`}>
+      <div className={`lg:flex items-center justify-center px-4 py-2  mr-1 bg-slate-800/30  ${index == 0 ? 'rounded-tl-lg' : ''} ${index == 3 ? 'rounded-bl-lg' : ''}`}>
         <span className="text-base lg:text-xl text-gray-400 min-w-[60px] font-thin mr-3">{source.source_name}</span>
         <div className="relative flex items-center w-[60px] h-[24px]">
           <div className="flex items-baseline justify-center space-x-0.5">
@@ -448,7 +448,7 @@ export default function SplitterAI() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900/50 to-slate-950 p-4 sm:p-8 md:py-16">
+    <div className="min-h-screen  p-4 sm:p-8 md:py-16">
       {/* Header Section */}
       <div className="text-center mb-8 sm:mb-12">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
@@ -561,7 +561,7 @@ export default function SplitterAI() {
                       <span className="hidden sm:inline text-xs sm:text-sm md:text-base">Download</span>
                     </button>
                     <div 
-                      className={`absolute right-0 mt-2 w-64 bg-slate-800/95 backdrop-blur-md rounded-xl shadow-lg border border-sky-500/10 transform transition-all duration-200 origin-top ${
+                      className={`absolute right-0 mt-2 w-64 bg-slate-900/95 backdrop-blur-md rounded-xl shadow-lg border border-sky-500/10 transform transition-all duration-200 origin-top ${
                         isDownloadOpen 
                           ? 'opacity-100 scale-100 translate-y-0' 
                           : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
@@ -570,7 +570,7 @@ export default function SplitterAI() {
                       {audioFiles.map((file, index) => (
                         <div 
                           key={file.source_name} 
-                          className="px-4 py-3 hover:bg-slate-700/50 transition-colors first:rounded-t-xl last:rounded-b-xl"
+                          className="px-4 py-3 hover:bg-slate-800/90 transition-colors first:rounded-t-xl last:rounded-b-xl"
                         >
                           <div className="flex items-center justify-between">
                             <span className="text-gray-300 text-sm font-medium">{file.source_name}</span>
@@ -679,8 +679,8 @@ export default function SplitterAI() {
 
       {/* Processing Modal */}
       {isProcessing && (
-        <div className="fixed inset-0 bg-gray-900/95 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-opacity duration-300">
-          <div className="text-center p-4 sm:p-6 md:p-8 w-full max-w-xs sm:max-w-sm md:max-w-md bg-gradient-to-b from-gray-800/90 to-gray-900/90 rounded-2xl shadow-2xl border border-cyan-400/20">
+        <div className="fixed inset-0 bg-gray-800/15 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-opacity duration-300">
+          <div className="text-center p-4 sm:p-6 md:p-8 w-full max-w-xs sm:max-w-sm md:max-w-md bg-slate-900/70  rounded-2xl shadow-2xl border border-cyan-400/20">
             {/* Audio wave animation */}
             <div className="flex justify-center items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4 audio-wave">
               <div className="w-0.5 sm:w-1 h-6 sm:h-8 animate-[wave_1s_ease-in-out_infinite]"></div>

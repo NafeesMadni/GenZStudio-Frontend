@@ -178,7 +178,7 @@ export default function ImageAI() {
   }, []);
 
   return (
-    <div className="bg-slate-900 text-white min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className=" text-white min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Enhanced Header Section */}
         <div className="text-center mb-16 space-y-4">
@@ -200,7 +200,7 @@ export default function ImageAI() {
           {tools.map((tool, index) => (
             <button
               key={tool.id}
-              className={`tool-button bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl flex flex-col items-center gap-4 border ${
+              className={`tool-button bg-slate-800/15 backdrop-blur-sm p-6 rounded-xl flex flex-col items-center gap-4 border ${
                 selectedTool === tool.id 
                 ? 'active border-cyan-400/50' 
                 : 'border-slate-700/50 hover:border-cyan-400/50'
@@ -312,7 +312,7 @@ export default function ImageAI() {
                     value={backgroundPrompt}
                     onChange={(e) => setBackgroundPrompt(e.target.value)}
                     placeholder="Enter new background description (e.g., 'beach sunset', 'office space')"
-                    className="w-full mt-4 p-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-400 focus:border-cyan-400 focus:outline-none"
+                    className="w-full mt-4 p-3 rounded-xl bg-slate-800/15 border border-slate-700 text-white placeholder-slate-400 focus:border-cyan-400 focus:outline-none"
                   />
                 </div>
               )}

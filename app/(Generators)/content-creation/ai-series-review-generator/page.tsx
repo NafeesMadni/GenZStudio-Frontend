@@ -59,7 +59,7 @@ export default function AISeriesReviewGenerator() {
   };
 
   return (
-    <div className="bg-slate-900 text-white flex items-center justify-center min-h-screen py-10">
+    <div className=" text-white flex items-center justify-center min-h-screen py-10">
       <div className="max-w-[785px] w-full px-4 py-8">
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">

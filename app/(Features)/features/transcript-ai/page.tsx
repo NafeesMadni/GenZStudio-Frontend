@@ -171,7 +171,7 @@ export default function TranscriptAI() {
   }, []);
 
   return (
-    <div className="bg-slate-900 text-white flex items-center justify-center min-h-screen py-10">
+    <div className="text-white flex items-center justify-center min-h-screen py-10">
       <div className="max-w-[785px] w-full px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -220,7 +220,7 @@ export default function TranscriptAI() {
             />
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="group relative py-2.5 px-8 bg-gradient-to-r from-cyan-400/10 to-blue-500/10 hover:from-cyan-400/20 hover:to-blue-500/20 text-white rounded-lg border border-cyan-400/50 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-cyan-400 focus:ring-opacity-50 hover:border-cyan-400"
+              className="group relative py-2.5 px-8 bg-slate-800/15  hover:bg-slate-800/30 text-white rounded-lg border border-cyan-400/50 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-cyan-400 focus:ring-opacity-50 hover:border-cyan-400"
             >
               <span className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -232,106 +232,106 @@ export default function TranscriptAI() {
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
-              className="bg-slate-800 text-white px-4 py-2.5 rounded-lg border border-cyan-400/50 focus:outline-none focus:ring-1 focus:ring-cyan-400"
+              className="bg-slate-800/15 text-white px-4 py-2.5 rounded-lg border border-cyan-400/50  transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-cyan-400 focus:ring-opacity-50 hover:border-cyan-400"
             >
-              <option value="en" data-flag="🇺🇸">🇺🇸 English</option>
-              <option value="af" data-flag="🇿🇦">🇿🇦 Afrikaans</option>
-              <option value="am" data-flag="🇪🇹">🇪🇹 Amharic</option>
-              <option value="ar" data-flag="🇸🇦">🇸🇦 Arabic</option>
-              <option value="as" data-flag="🇮🇳">🇮🇳 Assamese</option>
-              <option value="az" data-flag="🇦🇿">🇦🇿 Azerbaijani</option>
-              <option value="ba" data-flag="🇷🇺">🇷🇺 Bashkir</option>
-              <option value="be" data-flag="🇧🇾">🇧🇾 Belarusian</option>
-              <option value="bg" data-flag="🇧🇬">🇧🇬 Bulgarian</option>
-              <option value="bn" data-flag="🇧🇩">🇧🇩 Bengali</option>
-              <option value="bo" data-flag="🇨🇳">🇨🇳 Tibetan</option>
-              <option value="br" data-flag="🇫🇷">🇫🇷 Breton</option>
-              <option value="bs" data-flag="🇧🇦">🇧🇦 Bosnian</option>
-              <option value="ca" data-flag="🇪🇸">🇪🇸 Catalan</option>
-              <option value="cs" data-flag="🇨🇿">🇨🇿 Czech</option>
-              <option value="cy" data-flag="🏴󠁧󠁢󠁷󠁬󠁳󠁿">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Welsh</option>
-              <option value="da" data-flag="🇩🇰">🇩🇰 Danish</option>
-              <option value="de" data-flag="🇩🇪">🇩🇪 German</option>
-              <option value="el" data-flag="🇬🇷">🇬🇷 Greek</option>
-              <option value="eo" data-flag="🌍">🌍 Esperanto</option>
-              <option value="es" data-flag="🇪🇸">🇪🇸 Spanish</option>
-              <option value="et" data-flag="🇪🇪">🇪🇪 Estonian</option>
-              <option value="eu" data-flag="🇪🇸">🇪🇸 Basque</option>
-              <option value="fa" data-flag="🇮🇷">🇮🇷 Persian</option>
-              <option value="fi" data-flag="🇫🇮">🇫🇮 Finnish</option>
-              <option value="fo" data-flag="🇫🇴">🇫🇴 Faroese</option>
-              <option value="fr" data-flag="🇫🇷">🇫🇷 French</option>
-              <option value="gl" data-flag="🇪🇸">🇪🇸 Galician</option>
-              <option value="gu" data-flag="🇮🇳">🇮🇳 Gujarati</option>
-              <option value="ha" data-flag="🇳🇬">🇳🇬 Hausa</option>
-              <option value="haw" data-flag="🇺🇸">🇺🇸 Hawaiian</option>
-              <option value="hi" data-flag="🇮🇳">🇮🇳 Hindi</option>
-              <option value="hr" data-flag="🇭🇷">🇭🇷 Croatian</option>
-              <option value="hu" data-flag="🇭🇺">🇭🇺 Hungarian</option>
-              <option value="hy" data-flag="🇦🇲">🇦🇲 Armenian</option>
-              <option value="id" data-flag="🇮🇩">🇮🇩 Indonesian</option>
-              <option value="is" data-flag="🇮🇸">🇮🇸 Icelandic</option>
-              <option value="it" data-flag="🇮🇹">🇮🇹 Italian</option>
-              <option value="ja" data-flag="🇯🇵">🇯🇵 Japanese</option>
-              <option value="jw" data-flag="🇮🇩">🇮🇩 Javanese</option>
-              <option value="ka" data-flag="🇬🇪">🇬🇪 Georgian</option>
-              <option value="kk" data-flag="🇰🇿">🇰🇿 Kazakh</option>
-              <option value="km" data-flag="🇰🇭">🇰🇭 Khmer</option>
-              <option value="kn" data-flag="🇮🇳">🇮🇳 Kannada</option>
-              <option value="ko" data-flag="🇰🇷">🇰🇷 Korean</option>
-              <option value="la" data-flag="🏛️">🏛️ Latin</option>
-              <option value="lb" data-flag="🇱🇺">🇱🇺 Luxembourgish</option>
-              <option value="ln" data-flag="🇨🇩">🇨🇩 Lingala</option>
-              <option value="lo" data-flag="🇱🇦">🇱🇦 Lao</option>
-              <option value="lt" data-flag="🇱🇹">🇱🇹 Lithuanian</option>
-              <option value="lv" data-flag="🇱🇻">🇱🇻 Latvian</option>
-              <option value="mg" data-flag="🇲🇬">🇲🇬 Malagasy</option>
-              <option value="mi" data-flag="🇳🇿">🇳🇿 Māori</option>
-              <option value="mk" data-flag="🇲🇰">🇲🇰 Macedonian</option>
-              <option value="ml" data-flag="🇮🇳">🇮🇳 Malayalam</option>
-              <option value="mn" data-flag="🇲🇳">🇲🇳 Mongolian</option>
-              <option value="mr" data-flag="🇮🇳">🇮🇳 Marathi</option>
-              <option value="ms" data-flag="🇲🇾">🇲🇾 Malay</option>
-              <option value="mt" data-flag="🇲🇹">🇲🇹 Maltese</option>
-              <option value="my" data-flag="🇲🇲">🇲🇲 Burmese</option>
-              <option value="ne" data-flag="🇳🇵">🇳🇵 Nepali</option>
-              <option value="nl" data-flag="🇳🇱">🇳🇱 Dutch</option>
-              <option value="nn" data-flag="🇳🇴">🇳🇴 Norwegian Nynorsk</option>
-              <option value="no" data-flag="🇳🇴">🇳🇴 Norwegian</option>
-              <option value="oc" data-flag="🇫🇷">🇫🇷 Occitan</option>
-              <option value="pa" data-flag="🇮🇳">🇮🇳 Punjabi</option>
-              <option value="pl" data-flag="🇵🇱">🇵🇱 Polish</option>
-              <option value="ps" data-flag="🇦🇫">🇦🇫 Pashto</option>
-              <option value="pt" data-flag="🇵🇹">🇵🇹 Portuguese</option>
-              <option value="ro" data-flag="🇷🇴">🇷🇴 Romanian</option>
-              <option value="ru" data-flag="🇷🇺">🇷🇺 Russian</option>
-              <option value="sa" data-flag="🇮🇳">🇮🇳 Sanskrit</option>
-              <option value="sd" data-flag="🇵🇰">🇵🇰 Sindhi</option>
-              <option value="si" data-flag="🇱🇰">🇱🇰 Sinhala</option>
-              <option value="sk" data-flag="🇸🇰">🇸🇰 Slovak</option>
-              <option value="sl" data-flag="🇸🇮">🇸🇮 Slovenian</option>
-              <option value="sn" data-flag="🇿🇼">🇿🇼 Shona</option>
-              <option value="so" data-flag="🇸🇴">🇸🇴 Somali</option>
-              <option value="sq" data-flag="🇦🇱">🇦🇱 Albanian</option>
-              <option value="sr" data-flag="🇷🇸">🇷🇸 Serbian</option>
-              <option value="su" data-flag="🇮🇩">🇮🇩 Sundanese</option>
-              <option value="sv" data-flag="🇸🇪">🇸🇪 Swedish</option>
-              <option value="sw" data-flag="🇹🇿">🇹🇿 Swahili</option>
-              <option value="ta" data-flag="🇮🇳">🇮🇳 Tamil</option>
-              <option value="te" data-flag="🇮🇳">🇮🇳 Telugu</option>
-              <option value="tg" data-flag="🇹🇯">🇹🇯 Tajik</option>
-              <option value="th" data-flag="🇹🇭">🇹🇭 Thai</option>
-              <option value="tk" data-flag="🇹🇲">🇹🇲 Turkmen</option>
-              <option value="tl" data-flag="🇵🇭">🇵🇭 Tagalog</option>
-              <option value="tr" data-flag="🇹🇷">🇹🇷 Turkish</option>
-              <option value="tt" data-flag="🇷🇺">🇷🇺 Tatar</option>
-              <option value="uk" data-flag="🇺🇦">🇺🇦 Ukrainian</option>
-              <option value="ur" data-flag="🇵🇰">🇵🇰 Urdu</option>
-              <option value="uz" data-flag="🇺🇿">🇺🇿 Uzbek</option>
-              <option value="vi" data-flag="🇻🇳">🇻🇳 Vietnamese</option>
-              <option value="yo" data-flag="🇳🇬">🇳🇬 Yoruba</option>
-              <option value="zh" data-flag="🇨🇳">🇨🇳 Chinese</option>
-              <option value="zu" data-flag="🇿🇦">🇿🇦 Zulu</option>
+              <option value="en" data-flag="🇺🇸" className="bg-slate-900">🇺🇸 English</option>
+              <option value="af" data-flag="🇿🇦" className="bg-slate-900">🇿🇦 Afrikaans</option>
+              <option value="am" data-flag="🇪🇹" className="bg-slate-900">🇪🇹 Amharic</option>
+              <option value="ar" data-flag="🇸🇦" className="bg-slate-900">🇸🇦 Arabic</option>
+              <option value="as" data-flag="🇮🇳" className="bg-slate-900">🇮🇳 Assamese</option>
+              <option value="az" data-flag="🇦🇿" className="bg-slate-900">🇦🇿 Azerbaijani</option>
+              <option value="ba" data-flag="🇷🇺" className="bg-slate-900">🇷🇺 Bashkir</option>
+              <option value="be" data-flag="🇧🇾" className="bg-slate-900">🇧🇾 Belarusian</option>
+              <option value="bg" data-flag="🇧🇬" className="bg-slate-900">🇧🇬 Bulgarian</option>
+              <option value="bn" data-flag="🇧🇩" className="bg-slate-900">🇧🇩 Bengali</option>
+              <option value="bo" data-flag="🇨🇳" className="bg-slate-900">🇨🇳 Tibetan</option>
+              <option value="br" data-flag="🇫🇷" className="bg-slate-900">🇫🇷 Breton</option>
+              <option value="bs" data-flag="🇧🇦" className="bg-slate-900">🇧🇦 Bosnian</option>
+              <option value="ca" data-flag="🇪🇸" className="bg-slate-900">🇪🇸 Catalan</option>
+              <option value="cs" data-flag="🇨🇿" className="bg-slate-900">🇨🇿 Czech</option>
+              <option value="cy" data-flag="🏴󠁧󠁢󠁷󠁬󠁳󠁿" className="bg-slate-900">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Welsh</option>
+              <option value="da" data-flag="🇩🇰" className="bg-slate-900">🇩🇰 Danish</option>
+              <option value="de" data-flag="🇩🇪" className="bg-slate-900">🇩🇪 German</option>
+              <option value="el" data-flag="🇬🇷" className="bg-slate-900">🇬🇷 Greek</option>
+              <option value="eo" data-flag="🌍" className="bg-slate-900">🌍 Esperanto</option>
+              <option value="es" data-flag="🇪🇸" className="bg-slate-900">🇪🇸 Spanish</option>
+              <option value="et" data-flag="🇪🇪" className="bg-slate-900">🇪🇪 Estonian</option>
+              <option value="eu" data-flag="🇪🇸" className="bg-slate-900">🇪🇸 Basque</option>
+              <option value="fa" data-flag="🇮🇷" className="bg-slate-900">🇮🇷 Persian</option>
+              <option value="fi" data-flag="🇫🇮" className="bg-slate-900">🇫🇮 Finnish</option>
+              <option value="fo" data-flag="🇫🇴" className="bg-slate-900">🇫🇴 Faroese</option>
+              <option value="fr" data-flag="🇫🇷" className="bg-slate-900">🇫🇷 French</option>
+              <option value="gl" data-flag="🇪🇸" className="bg-slate-900">🇪🇸 Galician</option>
+              <option value="gu" data-flag="🇮🇳" className="bg-slate-900">🇮🇳 Gujarati</option>
+              <option value="ha" data-flag="🇳🇬" className="bg-slate-900">🇳🇬 Hausa</option>
+              <option value="haw" data-flag="🇺🇸" className="bg-slate-900">🇺🇸 Hawaiian</option>
+              <option value="hi" data-flag="🇮🇳" className="bg-slate-900">🇮🇳 Hindi</option>
+              <option value="hr" data-flag="🇭🇷" className="bg-slate-900">🇭🇷 Croatian</option>
+              <option value="hu" data-flag="🇭🇺" className="bg-slate-900">🇭🇺 Hungarian</option>
+              <option value="hy" data-flag="🇦🇲" className="bg-slate-900">🇦🇲 Armenian</option>
+              <option value="id" data-flag="🇮🇩" className="bg-slate-900">🇮🇩 Indonesian</option>
+              <option value="is" data-flag="🇮🇸" className="bg-slate-900">🇮🇸 Icelandic</option>
+              <option value="it" data-flag="🇮🇹" className="bg-slate-900">🇮🇹 Italian</option>
+              <option value="ja" data-flag="🇯🇵" className="bg-slate-900">🇯🇵 Japanese</option>
+              <option value="jw" data-flag="🇮🇩" className="bg-slate-900">🇮🇩 Javanese</option>
+              <option value="ka" data-flag="🇬🇪" className="bg-slate-900">🇬🇪 Georgian</option>
+              <option value="kk" data-flag="🇰🇿" className="bg-slate-900">🇰🇿 Kazakh</option>
+              <option value="km" data-flag="🇰🇭" className="bg-slate-900">🇰🇭 Khmer</option>
+              <option value="kn" data-flag="🇮🇳" className="bg-slate-900">🇮🇳 Kannada</option>
+              <option value="ko" data-flag="🇰🇷" className="bg-slate-900">🇰🇷 Korean</option>
+              <option value="la" data-flag="🏛️" className="bg-slate-900">🏛️ Latin</option>
+              <option value="lb" data-flag="🇱🇺" className="bg-slate-900">🇱🇺 Luxembourgish</option>
+              <option value="ln" data-flag="🇨🇩" className="bg-slate-900">🇨🇩 Lingala</option>
+              <option value="lo" data-flag="🇱🇦" className="bg-slate-900">🇱🇦 Lao</option>
+              <option value="lt" data-flag="🇱🇹" className="bg-slate-900">🇱🇹 Lithuanian</option>
+              <option value="lv" data-flag="🇱🇻" className="bg-slate-900">🇱🇻 Latvian</option>
+              <option value="mg" data-flag="🇲🇬" className="bg-slate-900">🇲🇬 Malagasy</option>
+              <option value="mi" data-flag="🇳🇿" className="bg-slate-900">🇳🇿 Māori</option>
+              <option value="mk" data-flag="🇲🇰" className="bg-slate-900">🇲🇰 Macedonian</option>
+              <option value="ml" data-flag="🇮🇳" className="bg-slate-900">🇮🇳 Malayalam</option>
+              <option value="mn" data-flag="🇲🇳" className="bg-slate-900">🇲🇳 Mongolian</option>
+              <option value="mr" data-flag="🇮🇳" className="bg-slate-900">🇮🇳 Marathi</option>
+              <option value="ms" data-flag="🇲🇾" className="bg-slate-900">🇲🇾 Malay</option>
+              <option value="mt" data-flag="🇲🇹" className="bg-slate-900">🇲🇹 Maltese</option>
+              <option value="my" data-flag="🇲🇲" className="bg-slate-900">🇲🇲 Burmese</option>
+              <option value="ne" data-flag="🇳🇵" className="bg-slate-900">🇳🇵 Nepali</option>
+              <option value="nl" data-flag="🇳🇱" className="bg-slate-900">🇳🇱 Dutch</option>
+              <option value="nn" data-flag="🇳🇴" className="bg-slate-900">🇳🇴 Norwegian Nynorsk</option>
+              <option value="no" data-flag="🇳🇴" className="bg-slate-900">🇳🇴 Norwegian</option>
+              <option value="oc" data-flag="🇫🇷" className="bg-slate-900">🇫🇷 Occitan</option>
+              <option value="pa" data-flag="🇮🇳" className="bg-slate-900">🇮🇳 Punjabi</option>
+              <option value="pl" data-flag="🇵🇱" className="bg-slate-900">🇵🇱 Polish</option>
+              <option value="ps" data-flag="🇦🇫" className="bg-slate-900">🇦🇫 Pashto</option>
+              <option value="pt" data-flag="🇵🇹" className="bg-slate-900">🇵🇹 Portuguese</option>
+              <option value="ro" data-flag="🇷🇴" className="bg-slate-900">🇷🇴 Romanian</option>
+              <option value="ru" data-flag="🇷🇺" className="bg-slate-900">🇷🇺 Russian</option>
+              <option value="sa" data-flag="🇮🇳" className="bg-slate-900">🇮🇳 Sanskrit</option>
+              <option value="sd" data-flag="🇵🇰" className="bg-slate-900">🇵🇰 Sindhi</option>
+              <option value="si" data-flag="🇱🇰" className="bg-slate-900">🇱🇰 Sinhala</option>
+              <option value="sk" data-flag="🇸🇰" className="bg-slate-900">🇸🇰 Slovak</option>
+              <option value="sl" data-flag="🇸🇮" className="bg-slate-900">🇸🇮 Slovenian</option>
+              <option value="sn" data-flag="🇿🇼" className="bg-slate-900">🇿🇼 Shona</option>
+              <option value="so" data-flag="🇸🇴" className="bg-slate-900">🇸🇴 Somali</option>
+              <option value="sq" data-flag="🇦🇱" className="bg-slate-900">🇦🇱 Albanian</option>
+              <option value="sr" data-flag="🇷🇸" className="bg-slate-900">🇷🇸 Serbian</option>
+              <option value="su" data-flag="🇮🇩" className="bg-slate-900">🇮🇩 Sundanese</option>
+              <option value="sv" data-flag="🇸🇪" className="bg-slate-900">🇸🇪 Swedish</option>
+              <option value="sw" data-flag="🇹🇿" className="bg-slate-900">🇹🇿 Swahili</option>
+              <option value="ta" data-flag="🇮🇳" className="bg-slate-900">🇮🇳 Tamil</option>
+              <option value="te" data-flag="🇮🇳" className="bg-slate-900">🇮🇳 Telugu</option>
+              <option value="tg" data-flag="🇹🇯" className="bg-slate-900">🇹🇯 Tajik</option>
+              <option value="th" data-flag="🇹🇭" className="bg-slate-900">🇹🇭 Thai</option>
+              <option value="tk" data-flag="🇹🇲" className="bg-slate-900">🇹🇲 Turkmen</option>
+              <option value="tl" data-flag="🇵🇭" className="bg-slate-900">🇵🇭 Tagalog</option>
+              <option value="tr" data-flag="🇹🇷" className="bg-slate-900">🇹🇷 Turkish</option>
+              <option value="tt" data-flag="🇷🇺" className="bg-slate-900">🇷🇺 Tatar</option>
+              <option value="uk" data-flag="🇺🇦" className="bg-slate-900">🇺🇦 Ukrainian</option>
+              <option value="ur" data-flag="🇵🇰" className="bg-slate-900">🇵🇰 Urdu</option>
+              <option value="uz" data-flag="🇺🇿" className="bg-slate-900">🇺🇿 Uzbek</option>
+              <option value="vi" data-flag="🇻🇳" className="bg-slate-900">🇻🇳 Vietnamese</option>
+              <option value="yo" data-flag="🇳🇬" className="bg-slate-900">🇳🇬 Yoruba</option>
+              <option value="zh" data-flag="🇨🇳" className="bg-slate-900">🇨🇳 Chinese</option>
+              <option value="zu" data-flag="🇿🇦" className="bg-slate-900">🇿🇦 Zulu</option>
             </select>
           </div>
           <p className="text-xs text-gray-500 mt-3">Supports MP4-MP3 • 50 MB</p>
@@ -339,8 +339,8 @@ export default function TranscriptAI() {
 
         {/* Upload progress container */}
         {isUploading && (
-          <div className="fixed inset-0 bg-gray-900/95 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-opacity duration-300">
-            <div className="text-center p-4 sm:p-6 md:p-8 w-full max-w-sm sm:max-w-md md:max-w-xl bg-gradient-to-b from-gray-800/90 to-gray-900/90 rounded-2xl shadow-2xl border border-cyan-400/20">
+          <div className="fixed inset-0 bg-slate-800/15 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-opacity duration-300">
+            <div className="text-center p-4 sm:p-6 md:p-8 w-full max-w-sm sm:max-w-md md:max-w-xl  bg-slate-900/70  rounded-2xl shadow-2xl border border-cyan-400/20">
               <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 mx-auto mb-3 sm:mb-4">
                 <svg className="w-full h-full" viewBox="0 0 100 100">
                   <circle
@@ -377,8 +377,8 @@ export default function TranscriptAI() {
 
         {/* Processing container */}
         {isProcessing && (
-          <div className="fixed inset-0 bg-gray-900/95 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300">
-            <div className="text-center p-4 sm:p-6 md:p-8 w-full max-w-sm sm:max-w-xl md:max-w-2xl bg-gradient-to-b from-gray-800/90 to-gray-900/90 rounded-2xl shadow-2xl border border-cyan-400/20">
+          <div className="fixed inset-0 bg-slate-800/15 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300">
+            <div className="text-center p-4 sm:p-6 md:p-8 w-full max-w-sm sm:max-w-xl md:max-w-2xl bg-slate-900/70 rounded-2xl shadow-2xl border border-cyan-400/20">
               {/* Audio wave animation */}
               <div className="flex justify-center items-center gap-0.5 sm:gap-1 mb-4 sm:mb-6 audio-wave">
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -408,7 +408,7 @@ export default function TranscriptAI() {
         {/* Result Container */}
         {showResult && (
           <div className="mt-8">
-            <div className="p-6 bg-gray-800 rounded-xl border border-gray-700 backdrop-blur-sm">
+            <div className="p-6 bg-slate-900/30 rounded-xl border border-white/5 backdrop-blur-sm">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -482,7 +482,7 @@ export default function TranscriptAI() {
                 ref={transcriptRef}
                 value={transcript}
                 readOnly
-                className="w-full h-72 p-4 bg-gray-900/50 text-gray-200 rounded-lg resize-y text-base border border-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 focus:border-cyan-400 transition-all duration-300"
+                className="w-full h-72 p-4 bg-slate-900/30 text-gray-200 rounded-lg resize-y text-base border border-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 focus:border-cyan-400 transition-all duration-300"
               />
             </div>
           </div>

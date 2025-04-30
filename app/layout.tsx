@@ -74,25 +74,25 @@ export default function RootLayout({
 
         <Navigation />
         {children}
+        
         <Analytics />
         <Footer />
         <script dangerouslySetInnerHTML={{ __html: `
+        
+        
           // Mobile menu functionality
           document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuButton = document.getElementById("mobile-menu-button");
             const mobileMenu = document.getElementById("mobile-menu");
-            const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
 
             function closeMobileMenu() {
               mobileMenu.classList.remove("active");
-              mobileMenuOverlay.classList.add("hidden");
               document.body.style.overflow = "";
             }
 
             if (mobileMenuButton && mobileMenu) {
               mobileMenuButton.addEventListener("click", () => {
                 mobileMenu.classList.toggle("active");
-                mobileMenuOverlay.classList.toggle("hidden");
                 document.body.style.overflow = mobileMenu.classList.contains("active")
                   ? "hidden"
                   : "";
@@ -249,6 +249,7 @@ export default function RootLayout({
                 margin-bottom: 2rem;
               }
             }
+
           `}
         </style>
       </body>
@@ -258,7 +259,7 @@ export default function RootLayout({
 
 function Navigation() {
   return (
-    <nav className="bg-slate-900/80 backdrop-blur-xl shadow-2xl sticky top-0 z-50 border-b border-white/5">
+    <nav className="bg-slate-900/5 backdrop-blur-xl shadow-2xl sticky top-0 z-50 border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -279,7 +280,7 @@ function Navigation() {
                   </svg>
                 </button>
                 <div
-                  className="dropdown-menu absolute left-0 mt-2 w-[600px] lg:w-[720px] bg-slate-900/95 backdrop-blur-md shadow-xl rounded-lg p-6"
+                  className="dropdown-menu absolute left-0 mt-2 w-[600px] lg:w-[720px] bg-[#0a131f] backdrop-blur-md shadow-xl rounded-lg p-6"
                 >
                   <div className="grid grid-cols-3 gap-y-4">
                     <div>
@@ -533,14 +534,7 @@ function Navigation() {
                             Video Downloader
                           </Link>
                         </li>
-                        <li>
-                          <Link
-                            href="/tiktok/transcript-generator"
-                            className="link-hover-effect text-xs lg:text-sm text-gray-300"
-                          >
-                            Transcript Generator
-                          </Link>
-                        </li>
+                        
                       </ul>
                     </div>
                   </div>
@@ -554,7 +548,7 @@ function Navigation() {
                 </button>
                 {/* Features Dropdown Menu */}
                 <div
-                  className="dropdown-menu absolute left-0 mt-2 w-[500px] bg-slate-900/95 backdrop-blur-md shadow-xl rounded-lg p-6"
+                  className="dropdown-menu absolute left-0 mt-2 w-[500px] bg-[#0a131f] backdrop-blur-md shadow-xl rounded-lg p-6"
                 >
                   <div className="space-y-3">
                     <Link href="/features/splitter-ai" className="block group">
@@ -701,13 +695,9 @@ function Navigation() {
           </button>
         </div>
       </div>
-      <div
-        id="mobile-menu-overlay"
-        className="mobile-menu-overlay fixed inset-0 bg-black bg-opacity-50 z-40 hidden"
-      ></div>
 
       {/* Mobile Menu Panel */}
-      <div id="mobile-menu" className="mobile-menu bg-slate-950/95">
+      <div id="mobile-menu" className="mobile-menu bg-[#0a131f]/95">
         <div className="px-4 py-2">
           {/* Free Tools Section */}
           <div className="pb-4">
@@ -790,14 +780,7 @@ function Navigation() {
                     Caption Generator
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    href="/tiktok/transcript-generator"
-                    className="link-hover-effect text-gray-300 text-sm"
-                  >
-                    Transcript Generator
-                  </Link>
-                </li>
+                
                 <li>
                   <Link
                     href="/tiktok-video-downloader"
@@ -1124,7 +1107,7 @@ function Navigation() {
 
 function Footer() {
   return (
-    <footer className="bg-slate-900/50 backdrop-blur-sm py-12 px-5 md:px-20 text-slate-300">
+    <footer className="bg-slate-900/5 backdrop-blur-sm py-12 px-5 md:px-20 text-slate-300 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">

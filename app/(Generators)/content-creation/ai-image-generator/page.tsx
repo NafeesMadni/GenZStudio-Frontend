@@ -86,7 +86,7 @@ export default function AIImageGenerator() {
   };
 
   return (
-    <div className="bg-slate-900 text-white min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="text-white min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 space-y-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 gradient-text">

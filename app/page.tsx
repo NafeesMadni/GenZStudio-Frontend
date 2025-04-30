@@ -103,12 +103,12 @@ export default function Home() {
         }
 
         .feature-card {
-          background: rgba(17, 25, 40, 0.95);
+          background: rgba(15, 20, 34, 0.98);
           backdrop-filter: blur(20px);
           border-radius: 16px;
           border: 1px solid rgba(255, 255, 255, 0.1);
           transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+            }
 
         .feature-card:hover {
           transform: translateY(-5px);
@@ -315,7 +315,7 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </button>
-              <Link href="/demo" 
+              <Link href="#" 
                 className="text-lg px-8 py-4 rounded-lg bg-white/5 text-gray-300 hover:bg-white/10 transition-all">
                 Watch Demo
               </Link>
@@ -398,6 +398,7 @@ export default function Home() {
               <Link 
                 href="/features/splitter-ai"
                 className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white rounded-lg text-lg px-5 py-2 inline-flex items-center hover:scale-105 transition-transform"
+                passHref
               >
                 Try Splitter AI
                 <svg className="inline-block w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

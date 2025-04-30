@@ -33,7 +33,7 @@ export function BaseDownloader({
   } = useDownloader(downloadPath, metadataPath)
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-slate-900">
+    <div className="min-h-screen flex items-center justify-center p-6 ">
       <div className="w-full max-w-3xl">
         <div className="space-y-6 p-6 bg-gradient-to-b from-sky-950/50 to-slate-900/50 rounded-xl border border-sky-400/30 backdrop-blur-sm">
           <div className="text-center space-y-3 mb-8">
