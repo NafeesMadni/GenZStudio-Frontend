@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Analytics } from '@vercel/analytics/next';
-import { Toaster } from 'react-hot-toast';
-import { Geist, Geist_Mono, Space_Grotesk  } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { Toaster } from "react-hot-toast";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { ReactNode } from "react";
 
 const logo_font = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['700'],
-})
+  subsets: ["latin"],
+  weight: ["700"],
+});
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,7 +22,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "GenZStudio - AI Tools for Content Creators",
-  description: "GenZStudio is the best AI tool to create captivating short-form videos in seconds for teams and businesses.",
+  description:
+    "GenZStudio is the best AI tool to create captivating short-form videos in seconds for teams and businesses.",
 };
 
 export default function RootLayout({
@@ -37,47 +38,55 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet"/>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"
+          rel="stylesheet"
+        />
 
-        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+        <script
+          src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"
+          defer
+        ></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-slate-900 to-slate-800 text-slate-100 min-h-screen`}
       >
-        <Toaster 
+        <Toaster
           position="bottom-right"
           toastOptions={{
             style: {
-              background: '#1e293b',
-              color: '#e2e8f0',
-              borderRadius: '0.5rem',
-              border: '1px solid rgba(14, 165, 233, 0.1)',
+              background: "#1e293b",
+              color: "#e2e8f0",
+              borderRadius: "0.5rem",
+              border: "1px solid rgba(14, 165, 233, 0.1)",
             },
             success: {
               iconTheme: {
-                primary: '#22c55e',
-                secondary: '#1e293b',
+                primary: "#22c55e",
+                secondary: "#1e293b",
               },
             },
             error: {
               iconTheme: {
-                primary: '#ef4444',
-                secondary: '#1e293b',
+                primary: "#ef4444",
+                secondary: "#1e293b",
               },
             },
           }}
         />
-        
-      {/* Fixed Background Elements */}
-      <div className="page-background"></div>
-      <div className="noise-overlay"></div>
+
+        {/* Fixed Background Elements */}
+        <div className="page-background"></div>
+        <div className="noise-overlay"></div>
 
         <Navigation />
         {children}
-        
+
         <Analytics />
         <Footer />
-        <script dangerouslySetInnerHTML={{ __html: `
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
         
         
           // Mobile menu functionality
@@ -123,7 +132,9 @@ export default function RootLayout({
               }
             });
           });
-        `}} />
+        `,
+          }}
+        />
         <style>
           {`
 
@@ -264,24 +275,34 @@ function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="group">
-            <div className={`text-2xl lg:text-3xl ${logo_font.className}  bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent `}>
+            <div
+              className={`text-2xl lg:text-3xl ${logo_font.className}  bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent `}
+            >
               GenZStudio
             </div>
           </Link>
-          
+
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <ul className="flex space-x-8">
               <li className="relative dropdown group">
                 <button className="text-slate-300 hover:text-cyan-400 font-medium focus:outline-none transition-all duration-200 flex items-center gap-1 group-hover:scale-105">
                   Free Tools
-                  <svg className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  <svg
+                    className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </button>
-                <div
-                  className="dropdown-menu absolute left-0 mt-2 w-[600px] lg:w-[720px] bg-[#0a131f] backdrop-blur-md shadow-xl rounded-lg p-6"
-                >
+                <div className="dropdown-menu absolute left-0 mt-2 w-[600px] lg:w-[720px] bg-[#0a131f] backdrop-blur-md shadow-xl rounded-lg p-6">
                   <div className="grid grid-cols-3 gap-y-4">
                     <div>
                       <h4 className="text-lg font-semibold text-cyan-400 mb-2">
@@ -534,28 +555,21 @@ function Navigation() {
                             Video Downloader
                           </Link>
                         </li>
-                        
                       </ul>
                     </div>
                   </div>
                 </div>
               </li>
               <li className="relative dropdown">
-                <button
-                  className="text-slate-300 hover:text-cyan-400 font-medium focus:outline-none transition-colors duration-200"
-                >
+                <button className="text-slate-300 hover:text-cyan-400 font-medium focus:outline-none transition-colors duration-200">
                   Features
                 </button>
                 {/* Features Dropdown Menu */}
-                <div
-                  className="dropdown-menu absolute left-0 mt-2 w-[500px] bg-[#0a131f] backdrop-blur-md shadow-xl rounded-lg p-6"
-                >
+                <div className="dropdown-menu absolute left-0 mt-2 w-[500px] bg-[#0a131f] backdrop-blur-md shadow-xl rounded-lg p-6">
                   <div className="space-y-3">
                     <Link href="/features/splitter-ai" className="block group">
                       <div className="flex items-center gap-3">
-                        <div
-                          className="p-2 bg-cyan-500/10 rounded-lg group-hover:bg-cyan-500/20 transition-colors duration-200"
-                        >
+                        <div className="p-2 bg-cyan-500/10 rounded-lg group-hover:bg-cyan-500/20 transition-colors duration-200">
                           <svg
                             className="w-6 h-6 text-cyan-400"
                             fill="none"
@@ -571,9 +585,7 @@ function Navigation() {
                           </svg>
                         </div>
                         <div>
-                          <span
-                            className="link-hover-effect text-xs lg:text-base text-gray-300"
-                          >
+                          <span className="link-hover-effect text-xs lg:text-base text-gray-300">
                             Splitter AI
                           </span>
                           <p className="text-xs text-gray-400 mt-1">
@@ -583,12 +595,46 @@ function Navigation() {
                         </div>
                       </div>
                     </Link>
-
-                    <Link href="/features/transcript-ai" className="block group">
+                    <Link href="/features/demusic-ai" className="block group">
                       <div className="flex items-center gap-3">
-                        <div
-                          className="p-2 bg-cyan-500/10 rounded-lg group-hover:bg-cyan-500/20 transition-colors duration-200"
-                        >
+                        <div className="p-2 bg-cyan-500/10 rounded-lg group-hover:bg-cyan-500/20 transition-colors duration-200">
+                          <svg
+                            className="w-6 h-6 text-cyan-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 4l16 16"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <span className="link-hover-effect text-xs lg:text-base text-gray-300">
+                            DeMusic AI
+                          </span>
+                          <p className="text-xs text-gray-400 mt-1">
+                            Remove background music with AI-Powered algorithms
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/features/transcript-ai"
+                      className="block group"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 bg-cyan-500/10 rounded-lg group-hover:bg-cyan-500/20 transition-colors duration-200">
                           <svg
                             className="w-6 h-6 text-cyan-400"
                             fill="none"
@@ -604,9 +650,7 @@ function Navigation() {
                           </svg>
                         </div>
                         <div>
-                          <span
-                            className="link-hover-effect text-xs lg:text-base text-gray-300"
-                          >
+                          <span className="link-hover-effect text-xs lg:text-base text-gray-300">
                             Transcript AI
                           </span>
                           <p className="text-xs text-gray-400 mt-1">
@@ -618,9 +662,7 @@ function Navigation() {
                     </Link>
                     <Link href="/features/image-ai" className="block group">
                       <div className="flex items-center gap-3">
-                        <div
-                          className="p-2 bg-cyan-500/10 rounded-lg group-hover:bg-cyan-500/20 transition-colors duration-200"
-                        >
+                        <div className="p-2 bg-cyan-500/10 rounded-lg group-hover:bg-cyan-500/20 transition-colors duration-200">
                           <svg
                             className="w-6 h-6 text-cyan-400"
                             fill="none"
@@ -636,9 +678,7 @@ function Navigation() {
                           </svg>
                         </div>
                         <div>
-                          <span
-                            className="link-hover-effect text-xs lg:text-base text-gray-300"
-                          >
+                          <span className="link-hover-effect text-xs lg:text-base text-gray-300">
                             Image AI
                           </span>
                           <p className="text-xs text-gray-400 mt-1">
@@ -688,9 +728,22 @@ function Navigation() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button id="mobile-menu-button" className="md:hidden text-slate-300 hover:text-cyan-400 transition-colors duration-200">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          <button
+            id="mobile-menu-button"
+            className="md:hidden text-slate-300 hover:text-cyan-400 transition-colors duration-200"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
             </svg>
           </button>
         </div>
@@ -707,7 +760,9 @@ function Navigation() {
 
             {/* YouTube Section */}
             <div className="mb-6">
-              <h3 className="text-cyan-300 text-md font-medium mb-2">YouTube</h3>
+              <h3 className="text-cyan-300 text-md font-medium mb-2">
+                YouTube
+              </h3>
               <ul className="space-y-1 pl-4">
                 <li>
                   <Link
@@ -780,7 +835,7 @@ function Navigation() {
                     Caption Generator
                   </Link>
                 </li>
-                
+
                 <li>
                   <Link
                     href="/tiktok-video-downloader"
@@ -794,7 +849,9 @@ function Navigation() {
 
             {/* Instagram Section */}
             <div className="mb-6">
-              <h3 className="text-cyan-300 text-md font-medium mb-2">Instagram</h3>
+              <h3 className="text-cyan-300 text-md font-medium mb-2">
+                Instagram
+              </h3>
               <ul className="space-y-1 pl-4">
                 <li>
                   <Link
@@ -832,7 +889,9 @@ function Navigation() {
             </div>
             {/* Spotify Section */}
             <div className="mb-6">
-              <h3 className="text-cyan-300 text-md font-medium mb-2">Spotify</h3>
+              <h3 className="text-cyan-300 text-md font-medium mb-2">
+                Spotify
+              </h3>
               <ul className="space-y-1 pl-4">
                 <li>
                   <Link
@@ -1003,6 +1062,42 @@ function Navigation() {
                 </Link>
               </li>
               <li>
+                <Link href="/features/demusic-ai" className="block">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-cyan-500/10 rounded-lg">
+                      <svg
+                        className="w-5 h-5 text-cyan-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M4 4l16 16"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span className="link-hover-effect text-gray-300 text-base">
+                        DeMusic AI
+                      </span>
+                      <p className="text-xs text-gray-400 mt-1">
+                        Remove background music from video with AI-Powered
+                        algorithms
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </li>
+              <li>
                 <Link href="/features/transcript-ai" className="block">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-cyan-500/10 rounded-lg">
@@ -1088,14 +1183,10 @@ function Navigation() {
 
           {/* Buttons */}
           <div className="space-y-3 pb-6">
-            <button
-              className="w-full px-4 py-2 border border-slate-600 rounded-md text-slate-300 hover:border-cyan-400 hover:text-cyan-400"
-            >
+            <button className="w-full px-4 py-2 border border-slate-600 rounded-md text-slate-300 hover:border-cyan-400 hover:text-cyan-400">
               Login
             </button>
-            <button
-              className="w-full px-4 py-2 bg-cyan-500 text-white rounded-md hover:bg-cyan-600"
-            >
+            <button className="w-full px-4 py-2 bg-cyan-500 text-white rounded-md hover:bg-cyan-600">
               Try For Free
             </button>
           </div>
@@ -1114,7 +1205,9 @@ function Footer() {
           {/* Left Section */}
           <div className="md:col-span-1 space-y-6">
             <div className="flex items-center space-x-2">
-              <span className={`text-3xl ${logo_font.className} font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent`}>
+              <span
+                className={`text-3xl ${logo_font.className} font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent`}
+              >
                 GenZStudio
               </span>
             </div>
@@ -1127,7 +1220,7 @@ function Footer() {
             <div className="flex space-x-4 mt-6">
               <a
                 href="https://github.com/NafeesMadni"
-                target="_blank" 
+                target="_blank"
                 className="text-gray-400 hover:text-white transform hover:scale-110 transition-all duration-300"
               >
                 <svg
@@ -1141,9 +1234,7 @@ function Footer() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <path
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                  />
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                 </svg>
               </a>
               <a
@@ -1183,9 +1274,7 @@ function Footer() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <path
-                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-                  />
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                   <rect x="2" y="9" width="4" height="12" />
                   <circle cx="4" cy="4" r="2" />
                 </svg>
@@ -1203,9 +1292,7 @@ function Footer() {
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
-                  <path
-                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-                  />
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
               </a>
             </div>
@@ -1215,9 +1302,7 @@ function Footer() {
           <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {/* Company Section */}
             <div className="footer-section space-y-4">
-              <h3
-                className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
-              >
+              <h3 className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 Company
               </h3>
               <ul className="space-y-2">
@@ -1274,9 +1359,7 @@ function Footer() {
 
             {/* Editing Section */}
             <div className="footer-section space-y-4">
-              <h3
-                className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
-              >
+              <h3 className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 Editing
               </h3>
               <ul className="space-y-2">
@@ -1333,9 +1416,7 @@ function Footer() {
 
             {/* Tools Section */}
             <div className="footer-section space-y-4">
-              <h3
-                className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
-              >
+              <h3 className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 Free Tools
               </h3>
               <ul className="space-y-2">
@@ -1355,7 +1436,7 @@ function Footer() {
                     Series Reviewer
                   </Link>
                 </li>
-               
+
                 <li>
                   <Link
                     href="/content-creation/ai-image-generator"
@@ -1397,18 +1478,24 @@ function Footer() {
         <div className="border-t border-slate-700/50 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm text-gray-400">
-              <Link href="#" className="link-hover-effect transition-colors duration-200">
+              <Link
+                href="#"
+                className="link-hover-effect transition-colors duration-200"
+              >
                 Terms of Service
               </Link>
               <span className="hidden md:inline text-gray-600">•</span>
-              <Link href="#" className="link-hover-effect transition-colors duration-200">
+              <Link
+                href="#"
+                className="link-hover-effect transition-colors duration-200"
+              >
                 Privacy Policy
               </Link>
             </div>
             <p className="text-sm text-gray-400">
               Made with
               <span className="mx-1 text-red-500">❤</span>
-              in PK - © 2025 
+              in PK - © 2025
               <span className="text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors duration-200 pl-1">
                 GenZStudio
               </span>

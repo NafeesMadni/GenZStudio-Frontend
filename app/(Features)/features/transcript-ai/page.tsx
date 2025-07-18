@@ -334,7 +334,7 @@ export default function TranscriptAI() {
               <option value="zu" data-flag="🇿🇦" className="bg-slate-900">🇿🇦 Zulu</option>
             </select>
           </div>
-          <p className="text-xs text-gray-500 mt-3">Supports MP4-MP3 • 50 MB</p>
+          <p className="text-xs text-gray-500 mt-3">Supports all video/audio formats • 100 MB</p>
         </div>
 
         {/* Upload progress container */}
