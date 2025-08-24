@@ -1,0 +1,7 @@
+services:
+  app:
+    build: .
+    container_name: genz-frontend
+    ports:
+      - "3000:3000"
+    command: pnpm run dev
